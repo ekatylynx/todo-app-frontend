@@ -1,0 +1,79 @@
+:root {
+  --select-border: #777;
+  --select-focus: blue;
+  --select-arrow: var(--select-border);
+}
+
+.calendar {
+  // margin-top: 10px;
+  padding: 18px; //15px
+  .calendar-title {
+    color: black;
+    font-size: 14px;
+  }
+}
+
+.header-table-cal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  .header-table-month {
+    text-align: center;
+    font-weight: 600;
+    color:rgb(50, 61, 209);
+    font-size: 16px;
+    margin: 20px 0 20px 0;
+  }
+  .header-select {
+    appearance: none;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    padding: 6px 6px;
+    background-color: white;
+    height: 30px;
+      &:focus {
+        outline: none;
+      }
+      &:after {
+          content: "";
+          width: 0.8em;
+          height: 0.5em;
+          background-color: var(--select-arrow);
+          clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+      }
+  }
+  .container-date {
+    display: flex;
+    height: 30px;
+    width: 100%;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+
+  .btn-switch-arrow {
+    border: none;
+    background-color: transparent;
+    font-weight: bold;
+    font-size: 18px;
+    width: 30px;
+    padding: 0;
+  }
+}
+
+.table-date {
+  width: 100%;
+}
+
+.week td {
+  text-align: center;
+  height: 34px;
+  line-height: 34px;
+}
+
+.table-date-month {
+  color: rgb(172, 172, 172);
+}

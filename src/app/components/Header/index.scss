@@ -1,0 +1,105 @@
+.header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  justify-content: center;
+  border-bottom: 1px solid var(--glob-main-border-color);
+}
+
+.header-nav {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 13px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  align-items: center;
+}
+
+.header-nav-links {
+  display: flex;
+}
+
+.header-link-item {
+  margin-right: 25px;
+}
+
+.header-btn-evt {
+  background-color: aqua;
+  border: none;
+  box-sizing: border-box;
+}
+
+.header-link-item-href {
+  text-decoration: none;
+  color: var(--glob-color-muted-gray);
+}
+
+.header-link-item-href:active {
+  color: var(--glob-color-black);
+}
+
+.header-link-item-href:hover {
+  color: var(--glob-color-black);
+}
+
+.header-function-block {
+  display: flex;
+}
+
+.header-btn-archive-tsk {
+  background-color: #3AAFA9;
+  border:none;
+  border-radius: 5px;
+  padding: 7px;
+  box-sizing: border-box;
+  height: 38px;
+  margin-right: 18px;
+}
+
+.header-btn-archive-tsk:hover {
+  background-color: #61d5cf;
+}
+
+.icon-archive-tsk {
+  width: 24px;
+  height: 24px;
+}
+
+.header-btn-user {
+  background-color: #3AAFA9;
+  border:none;
+  border-radius: 20px;
+  padding: 7px;
+  box-sizing: border-box;
+  height: 38px;
+}
+
+.header-btn-user:hover {
+  background-color: #61d5cf;
+}
+
+.icon-user {
+  width: 24px;
+  height: 24px;
+}
+
+.header-nav-date {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+}
+
+.header-name-weekday {
+  font-weight: 600;
+}
+
+.header-nav-link  {
+  color: var(--glob-color-black);
+  line-height: 18px;
+}
+
+.header-name-date {
+  color: rgb(63, 176, 241);
+}

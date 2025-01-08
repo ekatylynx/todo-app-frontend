@@ -1,0 +1,126 @@
+.rdp-root {
+  --rdp-day_button-width: 32px;
+  --rdp-day_button-height: 32px;
+  --rdp-day-width: 32px;
+  --rdp-day-height: 32px;
+  // --rdp-dropdown-gap: 8px;
+}
+
+.rdp-months {
+  border: 1px solid var(--glob-main-border-color);
+  border-radius: 6px;
+  padding: 1rem;
+  // box-shadow: var(0 0 #0000, 0 0 #0000), var(0 0 #0000, 0 0 #0000), var(--tw-shadow);
+}
+
+.rdp-weekdays {
+  display: flex;
+  width: 100%;
+}
+
+.rdp-weekdays {
+  display: flex;
+  width: 100%;
+}
+
+.rdp-weekday {
+  width: 32px;
+  height: 32px;
+  color: var(--glob-color-muted-gray);
+}
+
+.rdp-week {
+  display: flex;
+  margin-top: .5rem;
+  width: 100%;
+}
+
+.date-picker-lib {
+  display: flex;
+  justify-content: center;
+  padding: 18px;
+}
+
+.rdp-weekday {
+  font-size: 14px;
+}
+
+.rdp-day_button {
+  font-size: 14px;
+  border-radius: 10px;
+  transition-property: background-color;
+  background-color: none;
+  transition-timing-function: cubic-bezier(.4,0,.2,1);
+  transition-duration: .15s;
+  font-weight: 400;
+}
+
+.rdp-day_button:hover {
+  border-radius: 10px;
+  background-color: rgba(244, 244, 245, 1);
+}
+
+.rdp-today:not(.rdp-outside) .rdp-day_button {
+  color: black;
+  // border: 1px solid rgb(156, 156, 156);
+  background-color: rgb(192, 192, 192);
+  border-radius: 10px;
+}
+
+.rdp-selected { 
+  font-size: 16px;
+}
+
+.rdp-selected .rdp-day_button {
+  border: 0px solid rgb(58, 58, 58);
+  border-radius: 10px;
+  background-color: rgb(58, 58, 58);
+  color: white;
+}
+
+.rdp-caption_label {
+  left: 61px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.rdp-caption_label {
+  justify-content: center;
+}
+
+.rdp-button_previous {
+  left: -168px;
+  top: 12px;
+}
+
+.rdp-button_next {
+  right: 15px;
+  top: 12px;
+}
+
+.rdp-chevron {
+  fill: #b3b3b3;
+}
+
+.rdp-button_previous, .rdp-button_next {
+  border-radius: 6px;
+  // border: 1px solid #f1f1f3;
+  border: 1px solid var(--glob-main-border-color);
+  opacity: .5;
+  transition-property: opacity, fill;
+  transition-timing-function: cubic-bezier(.4,0,.2,1);
+  transition-duration: .15s;
+}
+
+.rdp-button_previous:hover, .rdp-button_next:hover {
+  opacity: 1;
+}
+
+// text-shadow
+// 0 0 5px #bb70bb, 0 0 10px #9d219d, 0 0 20px #8f208f, 0 0 40px #7c277c
+
+// text-shadow
+// 0 0 10px #bb70bb, 0 0 20px #601e60, 0 0 30px #5e1d5e, 0 0 50px #7b237b
+
+
+

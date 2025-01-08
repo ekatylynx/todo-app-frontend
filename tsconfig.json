@@ -13,13 +13,17 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {},
+    "paths": {
+      "@/*": ["./src/*"]
+    },
     "jsx": "react-jsx",
     "allowJs": false,
     "esModuleInterop": false,
     "allowSyntheticDefaultImports": true,
     "strict": true,
-    "types": ["vite/client", "vitest"]
+    "resolveJsonModule": true,
+    // edit: react and react-dom types added
+    "types": ["vite/client", "vitest", "react", "react-dom"]
   },
   "files": [],
   "include": [],

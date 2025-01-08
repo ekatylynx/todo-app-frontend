@@ -1,0 +1,31 @@
+.tasks-page-container {
+  padding: 0 55px;
+  // 
+}
+
+.tasks-page {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.task-list {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  // background-color: gray;
+  min-height: 60px;
+  border-bottom: 1px solid var(--glob-main-border-color);
+  padding: 0 8px;
+}
+
+.checkbox-meow {
+  margin: 8px;
+  margin-right: 12px;
+  width: 20px;
+  height: 20px;
+}

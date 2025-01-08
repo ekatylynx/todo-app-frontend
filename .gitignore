@@ -10,6 +10,7 @@ node_modules
 
 # IDEs and editors
 /.idea
+.idea
 .project
 .classpath
 .c9/
@@ -38,4 +39,18 @@ testem.log
 .DS_Store
 Thumbs.db
 
-.nx/cache
+.nx
+/.nx
+/.vs
+
+# Production
+build
+/build
+dist
+/dist
+
+e2e
+/e2e
+
+/public
+public

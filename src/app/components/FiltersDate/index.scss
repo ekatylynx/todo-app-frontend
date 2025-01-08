@@ -1,0 +1,52 @@
+.filters {
+  padding: 0 18px;
+}
+
+.filters-btn {
+  border: none;
+  background-color: transparent;
+  height: 36px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  transition: background-color .3s;
+  position: relative;
+  padding: 5px;
+}
+
+.filters-btn:hover {
+  // background-color: #ffefe5;
+  background-color: var(--glob-color-accent-gray);
+
+  // .filters-icon {
+  //   // stroke: red; 
+  //   fill: red;
+  // }
+
+  // .current-day {
+  //   color: red;
+  // }
+}
+
+.filters-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  // stroke: black;
+  fill: black;
+  transition: fill .5s;
+  // transition: fill .5s;
+}
+
+.current-day {
+  position: absolute;
+  display: block;
+  top: 14px;
+  left: 9px;
+  font-size: 10px;
+  color: black;
+  line-height: 9px;
+  font-weight: bold;
+}
+
