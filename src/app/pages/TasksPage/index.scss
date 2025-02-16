@@ -29,3 +29,27 @@
   width: 20px;
   height: 20px;
 }
+
+.tasks-cards {
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+
+.tasks-card {
+  display: flex;
+  flex-direction: row;
+}
+
+.tasks-card-title {
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.tasks-card-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.tasks-card-time {
+  color: var(--glob-color-muted-gray);
+}

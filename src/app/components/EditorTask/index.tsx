@@ -17,27 +17,27 @@ const EditorTask: React.FC<EditorTaskProps> = ({ close, ...props }) => {
 	// const to = useRef();
 
 	// Функция отправки данных
-  const send = async () => {
-    try {
-      const response = await fetch("http://127.0.0.1:8000/todos/create/", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ title, description }),
-      });
+  // const send = async () => {
+  //   try {
+  //     const response = await fetch("http://127.0.0.1:8000/todos/create/", {
+  //       method: "POST",
+  //       headers: {
+  //         Accept: "application/json",
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({ title, description }),
+  //     });
 
-      if (!response.ok) {
-        throw new Error(`Ошибка HTTP: ${response.status}`);
-      }
+  //     if (!response.ok) {
+  //       throw new Error(`Ошибка HTTP: ${response.status}`);
+  //     }
 
-      const data = await response.json();
-      console.log("Задача добавлена:", data);
-    } catch (error) {
-      console.error("Ошибка при добавлении задачи:", error);
-    }
-  };
+  //     const data = await response.json();
+  //     console.log("Задача добавлена:", data);
+  //   } catch (error) {
+  //     console.error("Ошибка при добавлении задачи:", error);
+  //   }
+  // };
 
 	// Эффект для примера
   useEffect(() => {
