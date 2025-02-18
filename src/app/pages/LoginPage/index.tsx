@@ -1,16 +1,17 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import { useNavigate, redirect, Navigate } from 'react-router-dom';
+import { useNavigate, Link, Navigate } from 'react-router-dom';
 
 import Input from '../../components/Input';
 import Button from '../../components/Button';
-import './index.scss';
 
-import { signin, isLogined, allTodos } from '../../../app/data/api';
+import { signin, isLogined } from '../../../app/data/api';
  
 interface FormData {
   email: string;
   password: string;
 }
+
+// TODO: Сделать один основной компонент Auth и наследовать от него Login/RegisterPage передавая туда лишь пропсы, во избежание дублирования кода
 
 const LoginPage: React.FC = () => {
   const navigate = useNavigate();
@@ -79,7 +80,6 @@ const LoginPage: React.FC = () => {
       if (Object.keys(errors).length === 0) {
         setIsSubmitting(true);
         try {
-          // await login(formData.email, formData.password);
           await signin(formData);
           setSubmitError('');
         } catch (error) {
@@ -96,14 +96,14 @@ const LoginPage: React.FC = () => {
     <section className="registration-page">
       <div className='info-container'>
         <p>Logo</p>
-        <p>Biba boba test yoba</p>
+        <p>test</p>
       </div>
       <div className='function-container'>
-        <a className='auth-link' href="./login">Sign up</a>
+        <Link className='auth-link' to="/auth/signup">Sign Up</Link>
         {/* <span></span> */}
         <div className='auth'>
           <span className='title-2xl'>Login in your account</span>
-          <span className='text-normal-gray'>Enter your email and password below to create your account</span>
+          <span className='text-normal-gray'>Enter your email and password below to sign in your account</span>
           <form className='auth-form' onSubmit={handleSubmit}>
               {/* <label htmlFor="email">Email</label> */}
               <Input
@@ -126,13 +126,10 @@ const LoginPage: React.FC = () => {
               />
               {errors.password && <p className="auth-error">{errors.password} </p>}
             {submitError && <p className="auth-error">{submitError}</p>}
-            <Button text='Sign up' textColor='white' type="submit" disabled={isSubmitting} />
-      {/* {todos.map(({ id, created_at_moscow }) => {
-        return (
-          <div key={id}>{id} {created_at_moscow}</div>
-        );
-      })} */}
+            <Button text='Sign up' textColor='white' type="submit" disabled={Object.keys(errors).length > 0 || isSubmitting || submitError !== ''} />
+            <span className='terms-text'>By clicking continue, you agree to our Terms of Service and Privacy Policy.</span>
           </form>
+          
         </div>
       </div>
     </section>

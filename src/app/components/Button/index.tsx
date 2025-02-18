@@ -22,6 +22,7 @@ const Button: React.FC<ButtonProps> = ({
   textWeight,
   classNameAdd,
   style,
+  disabled,
   ...props
 }) => {
 
@@ -46,6 +47,7 @@ const Button: React.FC<ButtonProps> = ({
     <button
       className={buttonClass.join(" ")}
       style={{ color: textColor, fontWeight: textWeight, ...style }}
+      disabled={disabled}
       {...props}
     >
       {icon && <img className={iconClass.join(' ')} src={icon} alt="icon" />}

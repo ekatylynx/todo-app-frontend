@@ -1,3 +1,5 @@
+import { rejects } from "assert";
+
 const API_PATH = "http://127.0.0.1:8000/account";
 
 interface CallOptions {
@@ -6,41 +8,73 @@ interface CallOptions {
   data?: Record<string, any>;
   isAuth?: boolean;
 }
+interface AuthResponse {
+  refresh: string;
+  access: string;
+}
 
+interface ApiResponse {
+  code?: string;
+}
 
-// TODO: Решение проблемы с типом для headers
+const call = async ({ path, method, data, isAuth = true }: CallOptions): Promise<any> => {
+  const headers: HeadersInit = {
+    'Content-Type': 'application/json',
+  };
 
-/*
-
-Нужно решить проблему с headers
-она связана с тем, что TypeScript не может автоматически преобразовать 
-объект с типом { 'Content-Type': string; Authorization: string | undefined; } 
-в тип HeadersInit, который ожидает fetch. Это происходит из-за того, 
-что Authorization может быть undefined, что не соответствует ожидаемому типу.
-
-*/
-
-const call = ({ path, method, data, isAuth = true }: CallOptions): Promise<any> => {
-  return fetch(`${API_PATH}${path}/`, {
-    method,
-    headers: {
-      'Content-Type': 'application/json',
-      "Authorization": isAuth ? `Bearer ${localStorage.getItem("access")}` : undefined,
-    },
-    body: JSON.stringify(data),
-  })
-  .then(res => res.json())
-  .then((data) => {
-    if (isAuth && data?.code === "token_not_valid") {
-      return refreshAccessToken()
-        .then(() => {
-          return call({ path, method, data, isAuth });
-        });
+  if (isAuth) {
+    const accessToken = localStorage.getItem("access");
+    if (accessToken) {
+      headers['Authorization'] = `Bearer ${accessToken}`;
     }
+  }
 
-    return data;
+  const response = await fetch(`${API_PATH}${path}/`, {
+    method,
+    headers,
+    body: data ? JSON.stringify(data) : undefined,
   });
+
+  const responseData: ApiResponse = await response.json();
+
+  if (isAuth && responseData?.code === "token_not_valid") {
+    await refreshAccessToken();
+    return call({ path, method, data, isAuth });
+  }
+
+  return responseData;
 };
+
+
+
+
+
+// const call = ({ path, method, data, isAuth = true }: CallOptions): Promise<any> => {
+//   return fetch(`${API_PATH}${path}/`, {
+//     method,
+//     headers: {
+//       'Content-Type': 'application/json',
+//       "Authorization": isAuth ? `Bearer ${localStorage.getItem("access")}` : undefined,
+//     },
+//     body: JSON.stringify(data),
+//   })
+//   .then(res => res.json())
+//   .then((data) => {
+//     if (isAuth && data?.code === "token_not_valid") {
+//       return refreshAccessToken()
+//         .then(() => {
+//           return call({ path, method, data, isAuth });
+//         });
+//     }
+
+//     return data;
+//   });
+// };
+
+
+
+
+
 
 const refreshAccessToken = (): Promise<void> => call({ 
   path: "/api/login/refresh", 
@@ -63,6 +97,26 @@ export const signin = ({ email, password }: {
       localStorage.setItem("refresh", refresh);
       localStorage.setItem("access", access);
     });
+
+
+    export const signup = ({ email, password }: { email: string; password: string }): Promise<void> => {
+      return new Promise((resolve, reject) => {
+        call({
+          path: "/api/register",
+          method: "POST",
+          data: { email, password },
+          isAuth: false, // не крепим к запросу авторизационный заголовок с токенами
+        })
+        .then(({ message, email, password }) => {
+          if (message) {
+            resolve({ message});
+          } else {
+            reject({ message: email || password });
+          }
+        })
+      });
+    };
+
 
 export const allTodos = async (): Promise<any> =>
   call({ path: "/todos", method: "GET" });

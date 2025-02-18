@@ -14,8 +14,8 @@ const App = () => {
       <Routes>
         {/* Открытые маршруты (регистрация и вход) */}
         <Route path="/auth" element={<AuthLayout />}>
-          <Route path="/auth" element={<RegisterPage />} />
-          <Route path="/auth/login" element={<LoginPage />} />
+          <Route path="/auth/signup" element={<RegisterPage />} />
+          <Route path="/auth/signin" element={<LoginPage />} />
         </Route>
         
         {/* Защищенные маршруты */}

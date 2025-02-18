@@ -26,19 +26,17 @@
 }
 
 .auth-link {
-  display: flex;
-  justify-self: flex-end;
-}
-
-.auth-link {
   font-weight: 500;
   padding: 8px 16px;
   border-radius: 6px;
   line-height: 1.25rem;
+  transition-property: background-color;
+  transition-timing-function: cubic-bezier(.4,0,.2,1);
+  transition-duration: .40s;
 }
 
 .auth-link:hover {
-  background-color: gray;
+  background-color: var(--glob-color-accent-gray);
 }
 
 .auth-form {
@@ -50,4 +48,11 @@
   text-align: center;
   color: hsl(0 84.2% 60.2%);
   margin-bottom: 8px;
+}
+
+.terms-text {
+  display: block;
+  margin-top: 24px;
+  text-align: center;
+  color: var(--glob-color-muted-gray);
 }
