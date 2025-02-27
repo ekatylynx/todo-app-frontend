@@ -36,20 +36,30 @@
 }
 
 .tasks-card {
+  margin-bottom: 4px;
   display: flex;
   flex-direction: row;
 }
 
 .tasks-card-title {
   font-weight: 500;
-  margin-bottom: 5px;
+  line-height: 21px;
+}
+
+.tasks-card-descrip {
+  font-size: 12px;
+  line-height: 18px;
+  color: gray;
 }
 
 .tasks-card-info {
+  padding-top: 2px;
   display: flex;
   flex-direction: column;
 }
 
 .tasks-card-time {
+  font-size: 12px;
+  line-height: 18px;
   color: var(--glob-color-muted-gray);
 }

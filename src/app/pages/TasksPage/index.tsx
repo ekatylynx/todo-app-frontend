@@ -19,12 +19,27 @@ const TasksPage: React.FC = () => {
 	const [open, setOpened] = useState<boolean>(false);
 
 	const [todos, setTodos] = useState([]);
-	const getTodos = () => allTodos().then(setTodos);
+	// const getTodos = () => allTodos().then((data) => {
+	// 	 if (data)
+	// 		setTodos(data);
+	// });
 	useEffect(() => {
-		getTodos()
-			.catch(() => {
-				getTodos();
-			});
+		// getTodos()
+		// 	.catch(() => {
+		// 		getTodos();
+		// 	});
+
+		allTodos().then((data) => {
+			if (data) {
+				// console.log("DATA COMPLETE")
+				setTodos(data);
+			// } else {
+				// console.log("NO DATA")
+			}
+	 	})
+		.catch((err) => {
+			// console.error("DATA ERROR", err)
+		});
 	}, []);
 
 	const formatter = new Intl.DateTimeFormat('en', {
@@ -43,7 +58,7 @@ const TasksPage: React.FC = () => {
 				<h2 className='title-2'>All tasks</h2>
 				<div>
 					<ul className="tasks-cards">
-					{todos.map(({ id, title, created_at_moscow, status }) => {
+					{todos.map(({ id, title, description, created_at_moscow, status }) => {
 						const taskDate = new Date(created_at_moscow);
 						return (
 							<li key={id} className='tasks-card'>
@@ -57,6 +72,7 @@ const TasksPage: React.FC = () => {
 								</div>
 								<div className="tasks-card-info">
 									<h3 className="tasks-card-title">{title}</h3>
+									<span className="tasks-card-descrip">{description}</span>
 									<span className="tasks-card-time">{formatter.format(taskDate)}</span>
 								</div>
 								

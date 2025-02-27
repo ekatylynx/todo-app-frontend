@@ -8,6 +8,7 @@ import RegisterPage from './pages/RegisterPage';
 import LoginPage from './pages/LoginPage';
 import Layout from "./layouts";
 import AuthLayout from "./layouts/AuthLayout";
+import FilterTasksPage from "./pages/FilterTasksPage";
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
         <Route path="/" element={<ProtectedRoute  />}>
           <Route path="/" element={<Layout />}>
             <Route path="/" element={<TasksPage />} />
+            <Route path="/categories/:id" element={<FilterTasksPage />} />
             <Route path="/main" element={<HabitsPage />} />
           </Route>
         </Route>

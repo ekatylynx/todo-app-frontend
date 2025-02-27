@@ -68,21 +68,20 @@
 }
 
 .header-btn-user {
-  background-color: #3AAFA9;
   border:none;
   border-radius: 20px;
-  padding: 7px;
   box-sizing: border-box;
-  height: 38px;
+  height: 32px;
+  width: 32px;
 }
 
-.header-btn-user:hover {
-  background-color: #61d5cf;
-}
+// .header-btn-user:hover {
+//   // background-color: black;
+// }
 
 .icon-user {
-  width: 24px;
-  height: 24px;
+  width: 100%;
+  height: 100%;
 }
 
 .header-nav-date {
