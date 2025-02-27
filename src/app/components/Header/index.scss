@@ -8,12 +8,11 @@
 }
 
 .header-nav {
+  box-sizing: border-box;
   display: flex;
   width: 100%;
   justify-content: space-between;
-  padding: 13px;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  padding: 13px 24px;
   align-items: center;
 }
 

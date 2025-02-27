@@ -11,6 +11,7 @@ import AuthLayout from "./layouts/AuthLayout";
 import FilterTasksPage from "./pages/FilterTasksPage";
 
 const App = () => {
+  // console.log("App run")
   return (
       <Routes>
         {/* Открытые маршруты (регистрация и вход) */}

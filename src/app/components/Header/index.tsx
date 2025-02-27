@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import archiveTasks from '../../../assets/icons/archive-ok.svg';
-import userIcon from '../../../assets/icons/user.svg';
+import userIcon from '../../../assets/icons/user2.png';
 import './index.scss';
 
 const date = new Date();
@@ -26,7 +26,7 @@ const Header = () => {
           <li className="header-link-item"><Link to="/ha" className="header-link-item-href transition-colors">События</Link></li>
         </ul>
         <div className="header-function-block">
-          <button className="header-btn-archive-tsk"><img className="icon-archive-tsk" src={archiveTasks} alt="icon-archive-task" /></button>
+          {/* <button className="header-btn-archive-tsk"><img className="icon-archive-tsk" src={archiveTasks} alt="icon-archive-task" /></button> */}
           <button className="header-btn-user"><img className="icon-user" src={userIcon} alt="icon-user" /></button>
           <div className="header-nav-date">
             <span className="header-nav-link header-name-weekday">{currentDayName}</span>

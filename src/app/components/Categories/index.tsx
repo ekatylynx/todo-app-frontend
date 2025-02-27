@@ -10,7 +10,7 @@ const [category, setCategory] = useState([]);
 
 useEffect(() => {
     allCategoriesUser().then((data) => {
-      if (data) {
+      if (data && Array.isArray(data)) {
         // const id = 6;
         // const categoryName = data.filter((item) => item.id === id)[0]?.title || "Unknown";
         // console.log(`Название шестой категори: ${categoryName}`);

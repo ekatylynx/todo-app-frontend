@@ -7,7 +7,6 @@ import { Checkbox } from "@/components/ui/checkbox"
 
 import { allTodos } from "@/app/data/api";
 
-
 interface Task {
 	id: number;
 	title: string;
@@ -30,7 +29,7 @@ const TasksPage: React.FC = () => {
 		// 	});
 
 		allTodos().then((data) => {
-			if (data) {
+			if (data && Array.isArray(data)) {
 				// console.log("DATA COMPLETE")
 				setTodos(data);
 			// } else {
