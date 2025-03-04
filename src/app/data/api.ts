@@ -7,26 +7,24 @@ const API_PATH = "http://127.0.0.1:8000/account";
  * - разобраться с типами данных для timestamp и научиться корректно записывать его с фронта на бэк
  */
 
-// Определяем интерфейс для данных Todo
+// ==================== Types ====================
 interface Todo {
   id: number;
   title: string;
+  description: string;
   completed: boolean;
-  // Добавьте другие поля, если они есть в вашем API
+  priority: number;
+  created_at: string;
+  updated_at: string;
+  deadline_from: string | null;
+  deadline_to: string | null;
+  categories: number[];
 }
 
 interface Categories {
   id: number;
   title: string;
   author: number;
-  // Добавьте другие поля, если они есть в вашем API
-}
-
-interface CallOptions {
-  path: string;
-  method: string;
-  data?: Record<string, any>;
-  isAuth?: boolean;
 }
 interface AuthResponse {
   refresh: string;
@@ -40,13 +38,23 @@ interface MessageResponse {
   message?: string; // Интерфейс для ответа при регистрации
 }
 
-// Template Api
+// ==================== Basic Type Requests ====================
+interface CallOptions {
+  path: string;
+  method: 'GET' | 'POST' | 'PUT' | 'DELETE';
+  data?: Record<string, any>;
+  isAuth?: boolean;
+  re: boolean;
+}
+
+
 const call = async ({ path, method, data, isAuth = true, re = false }: CallOptions): Promise<any> => {
   const headers: HeadersInit = {
     'Content-Type': 'application/json',
-    // credentials: 'include', // Включаем куки в запрос
+    // credentials: 'include', // Включаем куки в запрос, если необходимо
   };
 
+  // если isAuth true - добавляет auth заголовки + токены
   if (isAuth) {
     const accessToken = localStorage.getItem("access");
     if (accessToken) {
@@ -63,8 +71,9 @@ const call = async ({ path, method, data, isAuth = true, re = false }: CallOptio
   const responseData: ApiResponse = await response.json();
   // console.log("RESPONSE DATA", responseData);
 
+  // Если isAuth true и в ответе есть code: "token_not_valid":
   if (isAuth && responseData?.code === "token_not_valid") {
-    if (!re) {
+    if (!re) { // Если это первая попытка (re = false), пытается обновить токен через refreshAccessToken() и повторяет запрос.
       try {
         await refreshAccessToken();
         return call({ path, method, data, isAuth, re: true });
@@ -74,7 +83,7 @@ const call = async ({ path, method, data, isAuth = true, re = false }: CallOptio
         localStorage.removeItem("access");
         window.location.reload();
       }
-    } else {
+    } else { // Если вторая попытка (re = true), удаляет токены из localStorage и перезагружает страницу.
       console.error("Error update token");
       localStorage.removeItem("refresh");
       localStorage.removeItem("access");
@@ -82,40 +91,36 @@ const call = async ({ path, method, data, isAuth = true, re = false }: CallOptio
     }
   }
 
-  return responseData;
+  return responseData;   //  Возвращает responseData (результат запроса или ошибку).
 };
+
 
 // User Refresh Token
 const refreshAccessToken = (): Promise<void> => {
-  // const refresh = localStorage.getItem("refresh");
   // console.log("REFRESH TOKEN")
   return call({ 
-    path: "/api/login/refresh", 
+    path: "/api/login/refresh", // POST-запрос с текущим refresh-токеном.
     method: "POST",
     data: { refresh: localStorage.getItem("refresh") }, 
-    isAuth: false 
+    isAuth: false,
+    re: false
   }).then((data) => {
       // WARNING: DEBUG INFO ONLY
       // console.log("REFRESH", data);
       const { access } = data;
       if (access) {
         // console.log("REFRESH SUCCESS")
-        localStorage.setItem("access", access);
+        localStorage.setItem("access", access); // При успехе сохраняет новый access-токен в localStorage.
         // console.log("IS RTEFRESH REFRESHED", prevRefresh , refresh)
-        // localStorage.setItem("refresh", refresh);
         return Promise.resolve();
       } else {
-        // {
-        //   "detail": "Токен занесен в черный список",
-        //   "code": "token_not_valid"
-        // }
         return Promise.reject(data);
       }
     });
 };
 
 // // User Is Logined Check
-export const isLogined = () => !!localStorage.getItem("refresh") && !!localStorage.getItem("access");
+export const isLogined = () => !!localStorage.getItem("refresh") && !!localStorage.getItem("access"); //     Логика: Возвращает true, если в localStorage есть оба токена (refresh и access).
 
 
 // User Sign In
@@ -124,7 +129,8 @@ export const signin = ({ email, password }: {
     path: "/api/login",
     method: "POST", 
     data: { email, password }, 
-    isAuth: false })
+    isAuth: false,
+    re: false })
     .then(({ refresh, access }) => {
       // WARNING: DEBUG INFO ONLY
       // console.log("SIGNIN", refresh, access);
@@ -140,7 +146,7 @@ export const signup = ({ email, password }: { email: string; password: string })
       method: "POST",
       data: { email, password },
       isAuth: false,
-    })
+      re: false })
     .then(({ message, email, password }) => {
       if (message) {
         resolve(message);
@@ -156,15 +162,15 @@ export const signup = ({ email, password }: { email: string; password: string })
 
 // Todo Get All Queryset
 export const allTodos = async (): Promise<Todo[]> =>
-  call({ path: "/todos", method: "GET"});
+  call({ path: "/todos", method: "GET", re: false});
 
 // Categories Get All Queryset
 export const allCategoriesUser = async (): Promise<Categories[]> =>
-  call({ path: "/todos/categories", method: "GET"});
+  call({ path: "/todos/categories", method: "GET", re: false});
 
 // Categories Get Filtered Queryset
-export const allFilteredCategories = async (id): Promise<Todo[]> =>
-  call({ path: `/todos/category/${id}`, method: "GET"});
+export const allFilteredCategories = async (id: number): Promise<Todo[]> =>
+  call({ path: `/todos/category/${id}`, method: "GET", re: false});
 
 // Create New Task
 export const createTask = async ({
@@ -201,6 +207,7 @@ export const createTask = async ({
         priority,
       },
       isAuth: true,
+      re: false
     });
   } catch (error) {
     console.error("Error creating task:", error);
