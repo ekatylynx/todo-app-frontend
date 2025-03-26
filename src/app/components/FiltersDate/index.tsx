@@ -1,5 +1,5 @@
 import './index.scss';
-import searchIcon from '../../../assets/icons/icon-search.svg';
+import searchIcon from '@/shared/assets/icons/icon-search.svg';
 
 const currentDay = new Date().getDate();
 

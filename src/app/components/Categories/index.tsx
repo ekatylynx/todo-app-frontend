@@ -3,6 +3,7 @@ import Button from '../Button';
 import { allCategoriesUser, allTodos } from '@/app/data/api';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import IconAddElement from '@/shared/assets/icons/icon-add-el.svg';
 
 
 const Categories: React.FC = () => {
@@ -29,7 +30,7 @@ useEffect(() => {
         <div className='container-padding'>
           <Button
             text={'Add category'}
-            icon={'/src/assets/icons/icon-add-el.svg'}
+            icon={IconAddElement}
             textColor={'white'}
             textWeight={'normal'}
             classNameAdd={'btn-add-todo'}

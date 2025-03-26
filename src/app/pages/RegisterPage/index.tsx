@@ -7,6 +7,11 @@ import './index.scss';
 
 import { signup, isLogined, allTodos } from '../../../app/data/api';
  
+/**
+ * TODO:
+ * - Подчистить все неиспользуемые вещи и подчистить старые комментарииы
+ */
+
 interface FormData {
   email: string;
   password: string;

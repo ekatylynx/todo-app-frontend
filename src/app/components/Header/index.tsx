@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import archiveTasks from '../../../assets/icons/archive-ok.svg';
-import userIcon from '../../../assets/icons/user2.png';
+import archiveTasks from '@/shared/assets/icons/archive-ok.svg';
+import userIcon from '@/shared/assets/icons/user2.png';
 import './index.scss';
 
 const date = new Date();

@@ -3,7 +3,9 @@ import React, { useState, useEffect } from "react";
 import './index.scss';
 import EditorTask from '../../components/EditorTask';
 import Button from '../../components/Button';
-import { Checkbox } from "@/components/ui/checkbox"
+import { Checkbox } from "@/shared/components/ui/checkbox"
+import IconAddElement from '@/shared/assets/icons/icon-add-el-black.svg';
+
 
 import { allTodos } from "@/app/data/api";
 
@@ -83,7 +85,7 @@ const TasksPage: React.FC = () => {
 
 				{!open ? (<Button
 					text={'Add task'}
-					icon={'/src/assets/icons/icon-add-el-black.svg'}
+					icon={IconAddElement}
 					textColor={'black'}
 					textWeight={'normal'}
 					classNameAdd={'btn-add-todo'}

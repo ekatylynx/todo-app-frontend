@@ -3,10 +3,10 @@ import './index.scss';
 
 import { createTask } from "@/app/data/api";
 
-import calendarIcon from '../../../assets/icons/icon-calendar.svg';
-import folderIcon from '../../../assets/icons/icon-folder.svg';
-import priorityIcon from '../../../assets/icons/icon-priority.svg';
-import marksIcon from '../../../assets/icons/icon-marks.svg';
+import calendarIcon from '@/shared/assets/icons/icon-calendar.svg';
+import folderIcon from '@/shared/assets/icons/icon-folder.svg';
+import priorityIcon from '@/shared/assets/icons/icon-priority.svg';
+import marksIcon from '@/shared/assets/icons/icon-marks.svg';
 
 interface EditorTaskProps {
   close: () => void; // Указываем, что `close` — это функция без аргументов

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom';
 import './index.scss';
-import { Checkbox } from "@/components/ui/checkbox"
+import { Checkbox } from "@/shared/tailwind/components/ui/checkbox"
 import { allTodos, allFilteredCategories, allCategoriesUser } from "@/app/data/api";
 
 interface Task {
