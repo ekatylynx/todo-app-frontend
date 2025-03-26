@@ -26,23 +26,23 @@ interface Categories {
   title: string;
   author: number;
 }
-interface AuthResponse {
-  refresh: string;
-  access: string;
-}
+// interface AuthResponse {
+//   refresh: string;
+//   access: string;
+// }
 
 interface ApiResponse {
   code?: string;
 }
-interface MessageResponse {
-  message?: string; // Интерфейс для ответа при регистрации
-}
+// interface MessageResponse {
+//   message?: string; // Интерфейс для ответа при регистрации
+// }
 
 // ==================== Basic Type Requests ====================
 interface CallOptions {
   path: string;
-  method: 'GET' | 'POST' | 'PUT' | 'DELETE';
-  data?: Record<string, any>;
+  method: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
+  data?: Record<string, unknown>;
   isAuth?: boolean;
   re: boolean;
 }
@@ -214,3 +214,7 @@ export const createTask = async ({
     throw new Error("Failed to create task");
   }
 };
+
+
+export const updateStatusTodo = async (id, status): Promise<Todo[]> =>
+  call({ path: `/todos/${id}/update-status`, method: "PUT", data: { status },  re: false });

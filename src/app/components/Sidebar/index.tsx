@@ -1,12 +1,9 @@
-import React from "react";
-
-// import Calendar from "../Calendar";
+// БЫЛО
 import { MyDatePicker } from "../DatePicker";
 import Categories from "../Categories";
 import FiltersDate from "../FiltersDate";
-// import Button from '../Button';
+// СТАЛО
 import Button from '@/app/components/Button';
-
 
 import IconAddElement from '@/shared/assets/icons/icon-add-el.svg';
 
