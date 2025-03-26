@@ -52,3 +52,19 @@ export default tseslint.config({
   },
 })
 ```
+
+## Latest Project Updates
+- The project structure was reorganized into the FSD structure;
+- Updated all packages to latest versions, including `Vite`, but excluding `React`. `React` version `18.3.1` is used due to its stability;
+- Some other code optimizations.
+
+## Todo:
+- [ ] Reorganize all components into the FSD structure;
+- [ ] Add a few queries to the backend and frontend for the application to work;
+- [ ] Optimize all style files scss;
+- [ ] Implement a task request for a selected day in the calendar;
+- [ ] Create a user profile;
+- [ ] Connect Redux stores to the application;
+
+
+
