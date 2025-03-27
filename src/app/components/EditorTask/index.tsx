@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import './index.scss';
 
-import { createTask } from "@/app/data/api";
+import { createTask } from "@/entities/todo/api";
 
 import calendarIcon from '@/shared/assets/icons/icon-calendar.svg';
 import folderIcon from '@/shared/assets/icons/icon-folder.svg';

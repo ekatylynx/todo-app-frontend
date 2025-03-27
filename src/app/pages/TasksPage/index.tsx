@@ -1,5 +1,7 @@
 import React, { useState, useEffect, Suspense } from "react";
 
+import { Todo } from "@/entities/todo/model";
+
 import './index.scss';
 import EditorTask from '@/app/components/EditorTask';
 import Button from '@/app/components/Button';
@@ -7,16 +9,7 @@ import Input from '@/app/components/Input';
 import { Checkbox } from "@/shared/components/ui/checkbox"
 import IconAddElement from '@/shared/assets/icons/icon-add-el-black.svg';
 
-
-import { allTodos, updateStatusTodo } from "@/app/data/api";
-
-interface Task {
-	id: number;
-	title: string;
-	status: boolean;
-	description?: string;
-	created_at_moscow: string;
-}
+import { allTodos, updateStatusTodo } from "@/entities/todo/api";
 
 const TasksPage: React.FC = () => {
 	// TODO: 
@@ -25,7 +18,7 @@ const TasksPage: React.FC = () => {
 	// - [ ] Перенести и переписать все компоненты согласно FSD
 
 	const [open, setOpened] = useState<boolean>(false);
-	const [todos, setTodos] = useState<Task[]>([]);
+	const [todos, setTodos] = useState<Todo[]>([]);
 	const [isLoading, setIsLoading] = useState(false);
 	const [error, setError] = useState<string | null>(null);
 
