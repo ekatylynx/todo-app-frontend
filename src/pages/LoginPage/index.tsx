@@ -1,15 +1,12 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import { useNavigate, Link, Navigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
-import Input from '../../components/Input';
-import Button from '../../components/Button';
+import Input from '@/app/components/Input';
+import Button from '@/app/components/Button';
 
-import { signin, isLogined } from '../../../app/data/api';
- 
-interface FormData {
-  email: string;
-  password: string;
-}
+import { signin } from '@/features/auth/api';
+import { isLogined } from '@/shared/api/api';
+import { FormData } from '@/features/auth/types';
 
 // TODO: Сделать один основной компонент Auth и наследовать от него Login/RegisterPage передавая туда лишь пропсы, во избежание дублирования кода
 
@@ -82,7 +79,7 @@ const LoginPage: React.FC = () => {
         try {
           await signin(formData);
           setSubmitError('');
-        } catch (error) {
+        } catch {
           setSubmitError('Failed to login. Please check your credentials.');
         } finally {
           setIsSubmitting(false);

@@ -22,7 +22,7 @@ const Input: React.FC<InputProps> = ({
       {...props} // передаем все остальные пропсы, включая onChange
       placeholder={placeholder} 
       value={value} // значение поля должно быть привязано
-      className={(isChangeInput ? "channge-input" : "input") + className}
+      className={(isChangeInput ? "change-input" : "input") + className}
       onChange={onChange} // передаем onChange в input
     />
   );

@@ -1,0 +1,31 @@
+.user-profile {
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+.margin-element {
+  margin-bottom: 10px;
+}
+
+// .input-label {
+//   margin-bottom: 8px;
+// }
+
+.account-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-element {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.input-title {
+  font-weight: 600;
+  margin-bottom: 8px;
+}

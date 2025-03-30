@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import archiveTasks from '@/shared/assets/icons/archive-ok.svg';
+// import archiveTasks from '@/shared/assets/icons/archive-ok.svg';
 import userIcon from '@/shared/assets/icons/user2.png';
 import './index.scss';
 
@@ -27,7 +27,7 @@ const Header = () => {
         </ul>
         <div className="header-function-block">
           {/* <button className="header-btn-archive-tsk"><img className="icon-archive-tsk" src={archiveTasks} alt="icon-archive-task" /></button> */}
-          <button className="header-btn-user"><img className="icon-user" src={userIcon} alt="icon-user" /></button>
+          <Link className="header-btn-user" to="/profile"><img className="icon-user" src={userIcon} alt="icon-user" /></Link>
           <div className="header-nav-date">
             <span className="header-nav-link header-name-weekday">{currentDayName}</span>
             <span className="header-nav-link header-name-date">{formatWithLeadingZero(currentDay)}/{formatWithLeadingZero(currentMonth)}/{currentYear}</span>

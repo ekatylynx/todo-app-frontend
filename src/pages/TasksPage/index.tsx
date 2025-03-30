@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Suspense } from "react";
+import React, { useState, useEffect } from "react";
 
 import { Todo } from "@/entities/todo/model";
 
@@ -60,23 +60,22 @@ const TasksPage: React.FC = () => {
   const handleStatusChange = async (id: number, newStatus: boolean) => {
     try {
       // Оптимистичное обновление UI
-      setTodos((prevTodos) => {
-        prevTodos.map((todo) => {
-          return todo.id === id ? { ...todo, status: newStatus } : todo;
-				})
-			});
-
+      setTodos((prevTodos) =>
+        prevTodos.map((todo) =>
+          todo.id === id ? { ...todo, status: newStatus } : todo
+        )
+      );
 
       // Отправка на сервер
       await updateStatusTodo(id, newStatus);
       
     } catch (err) {
       // Откат изменений при ошибке
-      setTodos((prevTodos) => {
-        prevTodos.map((todo) => {
-          return todo.id === id ? { ...todo, status: !newStatus } : todo;
-			})
-		});
+      setTodos((prevTodos) =>
+        prevTodos.map((todo) =>
+          todo.id === id ? { ...todo, status: !newStatus } : todo
+        )
+      );
       setError("Failed to update task status");
       console.error("Error updating status:", err);
     }
@@ -100,8 +99,13 @@ const TasksPage: React.FC = () => {
 										className="checkbox-meow"
 										checked={status}
 										onCheckedChange={(checked) => {
-											// console.log(checked.value)
-											handleStatusChange(id, checked);
+											// Обработка всех возможных значений checked
+											if (checked === "indeterminate") {
+												console.warn("Indeterminate state is not handled.");
+												return;
+											}
+											const isChecked = checked === true;
+											handleStatusChange(id, isChecked);
 										}}/>
 									</div>
 									<div className="tasks-card-info">

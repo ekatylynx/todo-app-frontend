@@ -10,6 +10,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   textColor?: string;
   textWeight?: React.CSSProperties["fontWeight"];
   classNameAdd?: string;
+  variant?: 'primary' | 'danger' | 'outline';
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -23,6 +24,7 @@ const Button: React.FC<ButtonProps> = ({
   classNameAdd,
   style,
   disabled,
+  variant = 'primary',
   ...props
 }) => {
 
@@ -45,7 +47,7 @@ const Button: React.FC<ButtonProps> = ({
 
   return (
     <button
-      className={buttonClass.join(" ")}
+      className={buttonClass.join(" ") + ' ' + `${variant}`}
       style={{ color: textColor, fontWeight: textWeight, ...style }}
       disabled={disabled}
       {...props}

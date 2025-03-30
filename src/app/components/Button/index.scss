@@ -65,3 +65,20 @@
 .btn-background-empty:hover {
   background-color: var(--glob-color-accent-gray);
 }
+
+.danger {
+  background-color: #DC2626;
+  color: white;
+  border: 1px solid #DC2626;
+}
+
+.danger:hover {
+  background-color: #DF3B3B;
+  border: 1px solid #DC2626;
+}
+
+.outline {
+  background-color: transparent;
+  color: white;
+  border: 1px solid white;
+}

@@ -1,8 +1,10 @@
 import './index.scss';
-import Button from '../Button';
-import { allCategoriesUser, allTodos } from '@/app/data/api';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+
+import { allCategoriesUser } from '@/entities/category/api';
+
+import Button from '../Button';
 import IconAddElement from '@/shared/assets/icons/icon-add-el.svg';
 
 

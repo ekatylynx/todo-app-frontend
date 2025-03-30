@@ -1,11 +1,13 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { useNavigate, Link, Navigate } from 'react-router-dom';
 
-import Input from '../../components/Input';
-import Button from '../../components/Button';
+import Input from '@/app/components/Input';
+import Button from '@/app//components/Button';
 import './index.scss';
 
-import { signup, isLogined, allTodos } from '../../../app/data/api';
+import { signup } from '@/features/auth/api';
+import { isLogined } from '@/shared/api/api';
+import { allTodos } from '@/entities/todo/api';
  
 /**
  * TODO:
