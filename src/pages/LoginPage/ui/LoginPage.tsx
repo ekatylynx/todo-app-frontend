@@ -1,25 +1,18 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import { useNavigate, Link, Navigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
-import Input from '@/app/components/Input';
-import Button from '@/app//components/Button';
-import './index.scss';
+import Input from '@/shared/ui/Input';
+import Button from '@/shared/ui/Button';
 
-import { signup } from '@/features/auth/api';
+import { signin } from '@/features/auth/api';
 import { isLogined } from '@/shared/api/api';
-import { allTodos } from '@/entities/todo/api';
- 
-/**
- * TODO:
- * - Подчистить все неиспользуемые вещи и подчистить старые комментарииы
- */
+import { FormData } from '@/features/auth/types';
 
-interface FormData {
-  email: string;
-  password: string;
-}
+import '@/pages/RegisterPage/ui/index.scss';
 
-const RegisterPage: React.FC = () => {
+// TODO: Сделать один основной компонент Auth и наследовать от него Login/RegisterPage передавая туда лишь пропсы, во избежание дублирования кода
+
+const LoginPage: React.FC = () => {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState<FormData>({
@@ -30,7 +23,6 @@ const RegisterPage: React.FC = () => {
   const [errors, setErrors] = useState<Partial<FormData>>({});
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [submitError, setSubmitError] = useState<string>('');
-  const [submitMessage, setSubmitMessage] = useState<string>('');
 
   useEffect(() => {
     if (isLogined()) {
@@ -87,13 +79,10 @@ const RegisterPage: React.FC = () => {
       if (Object.keys(errors).length === 0) {
         setIsSubmitting(true);
         try {
-          // await login(formData.email, formData.password);
-          const { message } = await signup(formData);
-          navigate("/auth/signin");
-          setSubmitMessage(message);
+          await signin(formData);
           setSubmitError('');
-        } catch ({ message }) {
-          setSubmitError(message);
+        } catch {
+          setSubmitError('Failed to login. Please check your credentials.');
         } finally {
           setIsSubmitting(false);
         }
@@ -106,14 +95,14 @@ const RegisterPage: React.FC = () => {
     <section className="registration-page">
       <div className='info-container'>
         <p>Logo</p>
-        <p>Test</p>
+        <p>test</p>
       </div>
       <div className='function-container'>
-      <Link className='auth-link' to="/auth/signin">Sign In</Link>
+        <Link className='auth-link' to="/auth/signup">Sign Up</Link>
         {/* <span></span> */}
         <div className='auth'>
-          <span className='title-2xl'>Create your account</span>
-          <span className='text-normal-gray'>Enter your email and password below to create your account</span>
+          <span className='title-2xl'>Login in your account</span>
+          <span className='text-normal-gray'>Enter your email and password below to sign in your account</span>
           <form className='auth-form' onSubmit={handleSubmit}>
               {/* <label htmlFor="email">Email</label> */}
               <Input
@@ -136,14 +125,14 @@ const RegisterPage: React.FC = () => {
               />
               {errors.password && <p className="auth-error">{errors.password} </p>}
             {submitError && <p className="auth-error">{submitError}</p>}
-            <Button text='Sign up' textColor='white' type="submit" disabled={Object.keys(errors).length > 0 || isSubmitting || submitError !== ''} />
-            {submitMessage}
+            <Button text={isSubmitting ? 'Processing...' : 'Sign in'} textColor='white' type="submit" disabled={Object.keys(errors).length > 0 || isSubmitting || submitError !== ''} />
             <span className='terms-text'>By clicking continue, you agree to our Terms of Service and Privacy Policy.</span>
           </form>
+          
         </div>
       </div>
     </section>
   );
 };
 
-export default RegisterPage;
+export default LoginPage;

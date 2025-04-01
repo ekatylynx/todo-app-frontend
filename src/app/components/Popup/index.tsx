@@ -1,18 +1,19 @@
-import React, { useEffect, useRef } from "react";
+// import React, { useEffect, useRef } from "react";
 import './index.scss';
 
-const Popup = ({ type, text, onClose }) => {
-  const to = useRef();
+// const Popup = ({ type, text, onClose }) => {
+  const Popup = () => {
+  // const to = useRef();
 
-  useEffect(() => {
-    to.current = setTimeout(() => onClose(), 4000);
+  // useEffect(() => {
+  //   to.current = setTimeout(() => onClose(), 4000);
 
-    return () => clearTimeout(to.current);
-  }, [type, onClose]);
+  //   return () => clearTimeout(to.current);
+  // }, [type, onClose]);
 
     return (
       <div>
-        {text && type ? (
+        {/* {text && type ? (
           <section className="popup-info">
             <div
               className={
@@ -25,7 +26,7 @@ const Popup = ({ type, text, onClose }) => {
               <span title="Закрыть" onClick={onClose}>×</span>
             </div>
           </section>
-        )  : null}
+        )  : null} */}
       </div>
     );
 };

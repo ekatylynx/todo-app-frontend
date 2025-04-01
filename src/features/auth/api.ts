@@ -18,7 +18,7 @@ export const signin = ({ email, password }: { email: string; password: string })
     });
 
 // User Sign Up
-export const signup = ({ email, password }: { email: string; password: string }): Promise<void> => {
+export const signup = ({ email, password }: { email: string; password: string }): Promise<ApiResponse> => {
   return new Promise((resolve, reject) => {
     call<ApiResponse>({
       path: AUTH_ENDPOINTS.REGISTER,
@@ -27,9 +27,9 @@ export const signup = ({ email, password }: { email: string; password: string })
       isAuth: false,
       re: false })
     // .then(({ message, email, password }) => {
-    .then(({ message }) => {
-      if (message) {
-        resolve();
+    .then((response) => {
+      if (response.message) {
+        resolve(response);
       } else {
         // reject({ message: email || password });
         reject({ message: "Registration failed" });

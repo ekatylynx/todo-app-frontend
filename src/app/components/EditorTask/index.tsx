@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import './index.scss';
 
 import { createTask } from "@/entities/todo/api";
@@ -10,22 +10,28 @@ import marksIcon from '@/shared/assets/icons/icon-marks.svg';
 
 interface EditorTaskProps {
   close: () => void; // Указываем, что `close` — это функция без аргументов
+	author?: number;
 }
 
-const EditorTask: React.FC<EditorTaskProps> = ({ close, ...props }) => {
+const EditorTask: React.FC<EditorTaskProps> = ({ close, author }) => {
 	const [title, setTitle] = useState<string>("");
 	const [description, setDescription] = useState<string>("");
-	const [status, setStatus] = useState(''); // Добавьте начальное состояние для статуса
-  const [deadlineFrom, setDeadlineFrom] = useState(null); // Срок выполнения (от)
-  const [deadlineTo, setDeadlineTo] = useState(null); // Срок выполнения (до)
+	const [status] = useState(''); // Добавьте начальное состояние для статуса
+  const [deadlineFrom] = useState(null); // Срок выполнения (от)
+  const [deadlineTo] = useState(null); // Срок выполнения (до)
 
-	const handleSubmit = async (e) => {
+	const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     // Неявные поля, которые нужно заполнить
     const categories = 1; // Замените на реальный ID категории
     // const author = 1; НАМ ЭТО БОЛЬШЕ НЕ НУЖНО! подставляется автоматом в бэке
     const priority = 1; // Замените на реальный приоритет
+
+		if (!author) {
+      console.error('Author is required');
+      return;
+    }
 
     try {
       await createTask({
@@ -44,50 +50,6 @@ const EditorTask: React.FC<EditorTaskProps> = ({ close, ...props }) => {
       // Обработка ошибки, например, показ сообщения пользователю
     }
   };
-	
-	// Функция отправки данных
-  // const send = async () => {
-  //   try {
-  //     const response = await fetch("http://127.0.0.1:8000/todos/create/", {
-  //       method: "POST",
-  //       headers: {
-  //         Accept: "application/json",
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify({ title, description }),
-  //     });
-
-  //     if (!response.ok) {
-  //       throw new Error(`Ошибка HTTP: ${response.status}`);
-  //     }
-
-  //     const data = await response.json();
-  //     console.log("Задача добавлена:", data);
-  //   } catch (error) {
-  //     console.error("Ошибка при добавлении задачи:", error);
-  //   }
-  // };
-
-	// Эффект для примера
-  // useEffect(() => {
-  //   console.log("EditorTask компонент смонтирован");
-  //   return () => {
-  //     console.log("EditorTask компонент размонтирован");
-  //   };
-  // }, []);
-
-	// useEffect(() => {
-	// 	console.log("!!!");
-	// }, []);
-
-	// useEffect(() => {
-	//   clearTimeout(to.current);
-
-	//   to.current = setTimeout(() => {
-	//     // console.log(title);
-	//     send();
-	//   }, 3000);
-	// }, [title]);
 
 	return (
 		<div className={'manager-tasks'}>
@@ -141,22 +103,6 @@ const EditorTask: React.FC<EditorTaskProps> = ({ close, ...props }) => {
 		</div>
 	);
 }
-
-	// const send = () => {
-	// 	fetch('http://127.0.0.1:8000/todos/', {
-	// 		method: 'POST',
-	// 		headers: {
-	// 			'Accept': 'application/json',
-	// 			'Content-Type': 'application/json'
-	// 		},
-	// 		body: JSON.stringify({title})
-	// 	})
-	// 	.then((res) => res.json())
-	// 	.then((data) => {
-	// 		console.log("PASSED", data);
-	// 	})
-	// 	.catch(console.error);
-	// };
 
 export default EditorTask;
 

@@ -1,0 +1,1 @@
+export { HabitsPageAsync as HabitsPage } from './ui/HabitsPage.async';

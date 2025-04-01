@@ -3,7 +3,7 @@ import { MyDatePicker } from "../DatePicker";
 import Categories from "../Categories";
 import FiltersDate from "../FiltersDate";
 // СТАЛО
-import Button from '@/app/components/Button';
+import Button from '@/shared/ui/Button';
 
 import IconAddElement from '@/shared/assets/icons/icon-add-el.svg';
 

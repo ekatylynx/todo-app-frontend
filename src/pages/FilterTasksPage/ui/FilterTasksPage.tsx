@@ -11,7 +11,7 @@ const FilterTasksPage: React.FC = () => {
 	const [categoryName, setCategoryName] = useState("");
 	const { id } = useParams<{ id: string }>(); // Получаем id из URL
 	const [inputText, setInputText] = useState("")
-	const timeOut = React.useRef<number | undefined>(undefined);
+	const timeOut = React.useRef<NodeJS.Timeout | undefined>(undefined);
 
 	useEffect(() => {
 

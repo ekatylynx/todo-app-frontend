@@ -4,8 +4,8 @@ import { Todo } from "@/entities/todo/model";
 
 import './index.scss';
 import EditorTask from '@/app/components/EditorTask';
-import Button from '@/app/components/Button';
-import Input from '@/app/components/Input';
+import Button from '@/shared/ui/Button';
+import Input from '@/shared/ui/Input';
 import { Checkbox } from "@/shared/components/ui/checkbox"
 import IconAddElement from '@/shared/assets/icons/icon-add-el-black.svg';
 

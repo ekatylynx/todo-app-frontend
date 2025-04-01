@@ -5,32 +5,32 @@ import ProtectedRoute from "./routes/ProtectedRoute";
 
 import Layout from "./layouts";
 import AuthLayout from "./layouts/AuthLayout";
-import { TasksPageAsync } from "@/pages/TasksPage/TasksPage.async";
-import { FilterTasksPageAsync } from "@/pages/FilterTasksPage/FilterTasksPage.async";
-import { UserProfilePageAsync } from "@/pages/UserProfilePage/UserProfilePage.async";
-import { HabitsPageAsync } from "@/pages/HabitsPage/HabitsPage.async";
-import { RegisterPageAsync } from "@/pages/RegisterPage/RegisterPage.async";
-import { LoginPageAsync } from "@/pages/LoginPage/LoginPage.async";
+import { TasksPage } from "@/pages/TasksPage";
+import { FilterTasksPage } from "@/pages/FilterTasksPage";
+import { UserProfilePage } from "@/pages/UserProfilePage";
+import { HabitsPage } from "@/pages/HabitsPage";
+import { RegisterPage } from "@/pages/RegisterPage";
+import { LoginPage } from "@/pages/LoginPage";
 
 
 const App = () => {
   // console.log("App run")
   return (
-    <Suspense fallback={<div>Loading</div>}>
+    <Suspense fallback={<div>Loading...</div>}>
       <Routes>
         {/* Открытые маршруты (регистрация и вход) */}
         <Route path="/auth" element={<AuthLayout />}>
-          <Route path="/auth/signup" element={<RegisterPageAsync />} />
-          <Route path="/auth/signin" element={<LoginPageAsync />} />
+          <Route path="/auth/signup" element={<RegisterPage />} />
+          <Route path="/auth/signin" element={<LoginPage />} />
         </Route>
 
         {/* Защищенные маршруты */}
         <Route path="/" element={<ProtectedRoute />}>
           <Route path="/" element={<Layout />}>
-            <Route path="/" element={<TasksPageAsync />} />
-            <Route path="/categories/:id" element={<FilterTasksPageAsync />} />
-            <Route path="/main" element={<HabitsPageAsync />} />
-            <Route path="/profile" element={<UserProfilePageAsync />} />
+            <Route path="/" element={<TasksPage />} />
+            <Route path="/categories/:id" element={<FilterTasksPage />} />
+            <Route path="/main" element={<HabitsPage />} />
+            <Route path="/profile" element={<UserProfilePage />} />
           </Route>
         </Route>
       </Routes>

@@ -22,32 +22,33 @@ const AvatarUserLoader: React.FC = () => {
     }
   };
 
-  // const handleUpload = async () => {
-  //   if (file) {
-  //     const formData = new FormData();
-  //     formData.append('image', file);
+  const handleUpload = async () => {
+    if (file) {
+      const formData = new FormData();
+      formData.append('image', file);
 
-  //     try {
-  //       const response = await axios.post('/api/upload', formData, {
-  //         headers: {
-  //           'Content-Type': 'multipart/form-data',
-  //         },
-  //       });
-  //       setSuccess(true);
-  //       console.log('Upload successful:', response.data);
-  //     } catch (err) {
-  //       setError('Upload failed. Please try again.');
-  //       console.error('Error uploading file:', err);
-  //     }
-  //   }
-  // };
+      try {
+        // const response = await axios.post('/api/upload', formData, {
+        //   headers: {
+        //     'Content-Type': 'multipart/form-data',
+        //   },
+        // });
+        console.log('Successful try')
+        setSuccess(true);
+        console.log('Upload successful:');
+      } catch (err) {
+        setError('Upload failed. Please try again.');
+        console.error('Error uploading file:', err);
+      }
+    }
+  };
 
   return (
     <div>
       <input type="file" accept="image/jpeg,image/png" onChange={handleFileChange} />
       {error && <p style={{ color: 'red' }}>{error}</p>}
       {success && <p style={{ color: 'green' }}>Upload successful!</p>}
-      {/* <button onClick={handleUpload} disabled={!file}>Upload Image</button> */}
+      <button onClick={handleUpload} disabled={!file}>Upload Image</button>
     </div>
   );
 };

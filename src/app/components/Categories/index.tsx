@@ -4,12 +4,13 @@ import { Link } from 'react-router-dom';
 
 import { allCategoriesUser } from '@/entities/category/api';
 
-import Button from '../Button';
+import Button from '@/shared/ui/Button';
 import IconAddElement from '@/shared/assets/icons/icon-add-el.svg';
 
+import type { Categories } from '@/entities/category/model';
 
 const Categories: React.FC = () => {
-const [category, setCategory] = useState([]);
+const [category, setCategory] = useState<Categories[]>([]);
 
 useEffect(() => {
     allCategoriesUser().then((data) => {

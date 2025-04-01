@@ -1,18 +1,18 @@
-import React, { useState } from 'react';
-import Input from '../../components/Input';
-import Button from '../../components/Button';
+import React from 'react';
+// import Input from '../../components/Input';
+import Button from '@/shared/ui/Button';
 import './index.scss';
 
-interface FormData {
-  email: string;
-  password: string;
-}
+// interface FormData {
+//   email: string;
+//   password: string;
+// }
 
 const RegisterPage: React.FC = () => {
-  const [formData, setFormData] = useState<FormData>({
-    email: '',
-    password: '',
-  });
+  // const [formData, setFormData] = useState<FormData>({
+  //   email: '',
+  //   password: '',
+  // });
 
   return (
     <div className="auth-services">
