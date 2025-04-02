@@ -15,7 +15,7 @@ interface AuthFormProps {
   linkTitle: string;
   subtitle: string;
   textButton: string;
-  onSubmit: (data: FormData) => Promise<void>;
+  action: (data: FormData) => Promise<void>;
 }
 
 export const AuthForm: React.FC<AuthFormProps> = ({
@@ -25,7 +25,7 @@ export const AuthForm: React.FC<AuthFormProps> = ({
   linkTitle,
   subtitle,
   textButton,
-  onSubmit
+  action
 }) => {
   
   const [formData, setFormData] = useState<FormData>({
@@ -43,7 +43,7 @@ export const AuthForm: React.FC<AuthFormProps> = ({
       console.log("Redirect to /");
       navigate("/");
     }
-  }, [isSubmitting]);
+  }, [isSubmitting, navigate]);
 
   // Валидация из LoginPage
   const validate = useCallback(
@@ -90,23 +90,25 @@ export const AuthForm: React.FC<AuthFormProps> = ({
 
   // Обработчик отправки из LoginPage, адаптированный под пропс onSubmit
   const handleSubmit = useCallback(
-    async (e: FormEvent) => {
+    (e: FormEvent) => {
       e.preventDefault();
 
       if (Object.keys(errors).length === 0) {
         setIsSubmitting(true);
-        try {
-          await onSubmit(formData);
-          setSubmitError("");
-        } catch(err) {
-          // console.log("!!!!!!!!!!!!!", err)
-          setSubmitError(err?.message ? err.message : "Failed to submit. Please check your credentials.");
-        } finally {
-          setIsSubmitting(false);
-        }
+        action(formData)
+          .then(() => {
+            setSubmitError("");
+          })
+          .catch((err: Error) => {
+            // console.log("!!!!!!!!!!!!!", err)
+            setSubmitError(err?.message ? err.message : "Failed to submit. Please check your credentials.");            
+          })
+          .finally(() => {
+            setIsSubmitting(false);
+          });
       }
     },
-    [formData, errors]
+    [formData, errors, action]
   );
 
   return (

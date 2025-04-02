@@ -18,7 +18,7 @@ const LoginPage: React.FC = () => {
 
   return (
     <AuthForm
-      onSubmit={handleSubmit}
+      action={handleSubmit}
       fields={fields}
       title={'Login in your account'}
       subtitle={'Enter your email and password below to sign in your account'}

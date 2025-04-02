@@ -17,7 +17,8 @@ export const signin = ({ email, password }: { email: string; password: string })
       if (access) localStorage.setItem("access", access);
 
       if (detail) {
-        return Promise.reject(detail);
+        // return Promise.reject({ message: detail });
+        return Promise.reject(new Error(detail));
       }
     });
 
