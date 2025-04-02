@@ -18,6 +18,7 @@ export interface ApiResponse {
   message?: string;
   access?: string;
   refresh?: string;
+  detail?: string;
   data?: Record<string, unknown>;
   todos?: Todo[]; // Добавьте это поле, если API может возвращать массив задач
 }

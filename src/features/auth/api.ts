@@ -10,11 +10,15 @@ export const signin = ({ email, password }: { email: string; password: string })
     data: { email, password }, 
     isAuth: false,
     re: false })
-    .then(({ refresh, access }) => {
+    .then(({ refresh, access, detail }) => {
       // WARNING: DEBUG INFO ONLY
       // console.log("SIGNIN", refresh, access);
       if (refresh) localStorage.setItem("refresh", refresh);
       if (access) localStorage.setItem("access", access);
+
+      if (detail) {
+        return Promise.reject(detail);
+      }
     });
 
 // User Sign Up
@@ -26,17 +30,14 @@ export const signup = ({ email, password }: { email: string; password: string })
       data: { email, password },
       isAuth: false,
       re: false })
-    // .then(({ message, email, password }) => {
     .then((response) => {
       if (response.message) {
         resolve(response);
       } else {
-        // reject({ message: email || password });
         reject({ message: "Registration failed" });
       }
     })
     .catch((error) => {
-      // reject({ message: email || password || "An error occurred during registration" });
       reject({ message: "An error occurred during registration", error });
     });
   });
