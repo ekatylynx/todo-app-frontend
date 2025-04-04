@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { AuthForm } from '@/features/auth/ui/AuthForm';
-
+import { FormData } from '@/features/auth/types';
 import '@/pages/RegisterPage/ui/index.scss';
-import { signup } from '@/features/auth/api';
+import { signin, signup } from '@/features/auth/api';
 
 const RegisterPage: React.FC = () => {
 
@@ -12,8 +12,15 @@ const RegisterPage: React.FC = () => {
     { name: "password", label: "Password", type: "password" },
   ];
 
-  const handleSubmit = async (data: { email: string; password: string }) => {
-    await signup(data); // Вызов API регистрации
+  const handleSubmit = async (data: FormData) => {
+    try {
+      await signup(data);
+      await signin(data);
+      // console.log(loginData);
+    } catch (error) {
+      console.error("Registration error:", error);
+      throw error; // Пробрасываем ошибку дальше
+    }
   };
 
   return (

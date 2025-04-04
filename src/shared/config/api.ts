@@ -17,3 +17,7 @@ export const CATEGORY_ENDPOINTS = {
   ALL_CATEGORIES: '/todos/categories',
   ALL_FILTERED_CATEGORIES: (id: number) => `/todos/category/${id}`,
 };
+
+export const USER_ENDPOINTS = {
+  GET_USER_DATA: '/api/user/profile',
+};

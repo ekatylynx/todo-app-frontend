@@ -1,3 +1,5 @@
+import { User } from "../user/model";
+
 export interface Todo {
   id: number;
   title: string;
@@ -20,7 +22,9 @@ export interface ApiResponse {
   refresh?: string;
   detail?: string;
   data?: Record<string, unknown>;
-  todos?: Todo[]; // Добавьте это поле, если API может возвращать массив задач
+  todos?: Todo[]; // Добавьте это поле, если API может возвращать массив задач\
+  user?: User;
+  users?: User[];
 }
 
 export interface CallOptions {
