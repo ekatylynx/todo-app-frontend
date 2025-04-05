@@ -15,38 +15,36 @@ export const createTask = async ({
   title,
   description,
   status,
-  deadlineFrom,
-  deadlineTo,
-  categories,
-  author,
+  from_deadline,
+  until_deadline,
   priority,
+  categories,
 }: {
   title: string;
   description: string;
-  status: string;
-  deadlineFrom?: string | null;
-  deadlineTo?: string | null;
-  categories: number;
-  author: number;
-  priority: number;
-}): Promise<void> => {
+  status: boolean;
+  from_deadline?: string | null;
+  until_deadline?: string | null;
+  priority: string;
+  categories?: number[];
+}): Promise<Todo> => {
   try {
-    await call({
+    const response = await call<Todo>({
       path: TODO_ENDPOINTS.CREATE_TODO,
       method: "POST",
       data: {
         title,
         description,
         status,
-        deadline_from: deadlineFrom,
-        deadline_to: deadlineTo,
-        categories: categories,
-        author: author,
+        from_deadline: from_deadline,
+        until_deadline: until_deadline,
         priority,
+        categories,
       },
       isAuth: true,
       re: false
     });
+    return response; // Возвращаем созданную задачу
   } catch (error) {
     console.error("Error creating task:", error);
     throw new Error("Failed to create task");

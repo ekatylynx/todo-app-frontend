@@ -33,11 +33,13 @@ const TasksPage: React.FC = () => {
 			<div className='tasks-page'>
 				<h2 className='title-2'>All tasks</h2>
 				<ul className="tasks-cards">
-					{todos.map((todo) => (
-						<TaskCard
-							key={todo.id}
-							todo={todo}
-						/>
+					{todos
+						.filter((todo) => !!todo && todo.id !== undefined)
+						.map((todo) => (
+							<TaskCard
+								key={todo.id}
+								todo={todo}
+							/>
 					))}
 				</ul>
 

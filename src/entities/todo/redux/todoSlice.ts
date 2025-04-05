@@ -1,9 +1,9 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 
-import { Todo } from "../model";
-import { allTodos, updateStatusTodo } from "../api";
+import { allTodos, updateStatusTodo, createTask } from "../api";
 
-// Асинхронный thunk для получения всех задач
+import { Todo, CreateTodoPayload } from "../model";
+
 export const fetchTodos = createAsyncThunk<Todo[], void, { rejectValue: string }>(
   "todos/fetchTodos",
   async (_, { rejectWithValue }) => {
@@ -13,13 +13,13 @@ export const fetchTodos = createAsyncThunk<Todo[], void, { rejectValue: string }
         return data;
       }
       return rejectWithValue("No data received");
-    } catch {
-      return rejectWithValue("Failed to fetch todos");
+    } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : "Failed to fetch todos";
+      return rejectWithValue(errorMessage);
     }
   }
 );
 
-// Асинхронный thunk для обновления статуса задачи
 export const updateTodoStatus = createAsyncThunk<
   { id: number; status: boolean },
   { id: number; status: boolean },
@@ -30,8 +30,43 @@ export const updateTodoStatus = createAsyncThunk<
     try {
       await updateStatusTodo(id, status);
       return { id, status };
-    } catch {
-      return rejectWithValue("Failed to update todo status");
+    } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : "Failed to update todo status";
+      return rejectWithValue(errorMessage);
+    }
+  }
+);
+
+export const createTodo = createAsyncThunk<Todo, CreateTodoPayload, { rejectValue: string }>(
+  "todos/createTodo",
+  async (newTodo, { rejectWithValue }) => {
+    try {
+      const createdTodo = await createTask({
+        title: newTodo.title,
+        description: newTodo.description,
+        priority: newTodo.priority,
+        status: newTodo.status,
+        from_deadline: newTodo.from_deadline,
+        until_deadline: newTodo.until_deadline,
+        categories: newTodo.categories,
+      });
+      console.log("API response from createTask:", createdTodo); // Для диагностики
+      // Формируем полный объект Todo
+      const completeTodo: Todo = {
+        id: createdTodo.id,
+        title: createdTodo.title,
+        description: createdTodo.description,
+        priority: createdTodo.priority,
+        status: createdTodo.status,
+        from_deadline: createdTodo.from_deadline,
+        until_deadline: createdTodo.until_deadline,
+        categories: createdTodo.categories || newTodo.categories || [],
+        created_at: createdTodo.created_at || new Date().toISOString(),
+      };
+      return completeTodo;
+    } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : "Failed to create todo";
+      return rejectWithValue(errorMessage);
     }
   }
 );
@@ -51,11 +86,8 @@ const initialState: TodosState = {
 const todosSlice = createSlice({
   name: "todos",
   initialState,
-  reducers: {
-    // Можно добавить дополнительные редюсеры, если это требуется
-  },
+  reducers: {},
   extraReducers: (builder) => {
-    // Обработка fetchTodos
     builder
       .addCase(fetchTodos.pending, (state) => {
         state.loading = "pending";
@@ -70,7 +102,6 @@ const todosSlice = createSlice({
         state.error = action.payload || "Unknown error";
       });
 
-    // Обработка updateTodoStatus
     builder
       .addCase(updateTodoStatus.pending, (state) => {
         state.error = null;
@@ -85,6 +116,20 @@ const todosSlice = createSlice({
         }
       )
       .addCase(updateTodoStatus.rejected, (state, action) => {
+        state.error = action.payload || "Unknown error";
+      });
+
+    builder
+      .addCase(createTodo.pending, (state) => {
+        state.loading = "pending";
+        state.error = null;
+      })
+      .addCase(createTodo.fulfilled, (state, action: PayloadAction<Todo>) => {
+        state.loading = "succeeded";
+        state.todos.push(action.payload); // Добавляем новую задачу в список
+      })
+      .addCase(createTodo.rejected, (state, action) => {
+        state.loading = "failed";
         state.error = action.payload || "Unknown error";
       });
   },

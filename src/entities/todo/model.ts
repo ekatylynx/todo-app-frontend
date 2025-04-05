@@ -4,15 +4,26 @@ export interface Todo {
   id: number;
   title: string;
   description: string;
-  completed: boolean;
-  priority: number;
-  created_at: string;
-  updated_at: string;
-  deadline_from?: string | null;
-  deadline_to?: string | null;
-  categories: number[];
   status: boolean;
-	created_at_moscow: string;
+  priority: string;
+  created_at: string;
+  updated_at?: string;
+  from_deadline?: string | null;
+  until_deadline?: string | null;
+  categories: number[];
+	created_at_moscow?: string;
+}
+
+// Типы для входных данных Todo
+export interface CreateTodoPayload {
+  title: string;
+  description: string;
+  priority: string;
+  status: boolean;
+  from_deadline?: string | null;
+  until_deadline?: string | null;
+  categories?: number[];
+  updated_at?: string;
 }
 
 export interface ApiResponse {

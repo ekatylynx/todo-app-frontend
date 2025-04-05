@@ -18,6 +18,10 @@ export const TaskCard: React.FC<TaskCardProps> = ({ todo }) => {
   const dispatch = useDispatch<AppDispatch>();
 
   const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    if (isNaN(date.getTime())) {
+      return "Invalid Date"; // Или другое значение по умолчанию
+    }
     const formatter = new Intl.DateTimeFormat("en", {
       weekday: "short",
       year: "numeric",
@@ -27,7 +31,7 @@ export const TaskCard: React.FC<TaskCardProps> = ({ todo }) => {
       minute: "numeric",
       hour12: false,
     });
-    return formatter.format(new Date(dateString));
+    return formatter.format(date);
   };
 
   const handleStatusChange = (checked: boolean | "indeterminate") => {
@@ -55,7 +59,7 @@ export const TaskCard: React.FC<TaskCardProps> = ({ todo }) => {
           onChange={(e) => e.target.value} // Пока оставляем заглушку
         />
         <span className="tasks-card-descrip">{todo.description}</span>
-        <span className="tasks-card-time">{formatDate(todo.created_at_moscow)}</span>
+        <span className="tasks-card-time">{formatDate(todo.created_at)}</span>
       </div>
     </li>
   );
