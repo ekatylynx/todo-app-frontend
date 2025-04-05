@@ -1,0 +1,26 @@
+// src/features/task/ui/TaskCard/index.scss
+.tasks-card {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+
+  &-info {
+    margin-left: 10px;
+  }
+
+  &-title {
+    font-weight: bold;
+  }
+
+  &-descrip {
+    display: block;
+    color: #666;
+  }
+
+  &-time {
+    display: block;
+    font-size: 0.9em;
+    color: #999;
+  }
+}

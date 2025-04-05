@@ -27,7 +27,7 @@ const Header = () => {
         </ul>
         <div className="header-function-block">
           {/* <button className="header-btn-archive-tsk"><img className="icon-archive-tsk" src={archiveTasks} alt="icon-archive-task" /></button> */}
-          <Link className="header-btn-user" to="/profile"><img className="icon-user" src={userIcon} alt="icon-user" /></Link>
+          <Link className="header-btn-user" to="/profile/my"><img className="icon-user" src={userIcon} alt="icon-user" /></Link>
           <div className="header-nav-date">
             <span className="header-nav-link header-name-weekday">{currentDayName}</span>
             <span className="header-nav-link header-name-date">{formatWithLeadingZero(currentDay)}/{formatWithLeadingZero(currentMonth)}/{currentYear}</span>

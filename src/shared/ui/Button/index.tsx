@@ -10,6 +10,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   textColor?: string;
   textWeight?: React.CSSProperties["fontWeight"];
   classNameAdd?: string;
+  width?: "full";
   variant?: 'primary' | 'danger' | 'outline';
 }
 
@@ -25,6 +26,7 @@ const Button: React.FC<ButtonProps> = ({
   style,
   disabled,
   variant = 'primary',
+  width,
   ...props
 }) => {
 
@@ -33,6 +35,10 @@ const Button: React.FC<ButtonProps> = ({
 
   if (backgroundEmpty)
     buttonClass.push("btn-background-empty");
+
+  if (width === "full") {
+    buttonClass.push("btn-full-width"); // Класс для ширины 100%
+  }
 
   if (classNameAdd)
     buttonClass.push(classNameAdd);

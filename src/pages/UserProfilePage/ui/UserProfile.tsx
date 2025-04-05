@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from "react";
 import './index.scss';
 
-import Input from "@/shared/ui/Input";
-import Button from "@/shared/ui/Button";
+import { Tabs } from "@/widgets/Tabs";
+import { TabsRouter } from "./TabsRouter";
 import type { User } from "@/entities/user/model";
 import { getUserData } from "@/entities/user/api";
+
+const tabs = [
+	{ id: "info", label: "Profile", path: "my" },
+	{ id: "account", label: "Account", path: "account" },
+	{ id: "notifications", label: "Notifications", path: "notifications" },
+];
 
 const UserProfilePage: React.FC = () => {
 	const [user, setUser] = useState<User | null>(null);
@@ -12,22 +18,22 @@ const UserProfilePage: React.FC = () => {
 	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const data = await getUserData();
-        if (data) {
-          setUser(data);
-        }
-      } catch (err) {
-        setError("Failed to load user data");
-        console.error("Error fetching user data:", err);
-      } finally {
-        setIsLoading(false);
-      }
-    };
+		const fetchUserData = async () => {
+			try {
+				const data = await getUserData();
+				if (data) {
+					setUser(data);
+				}
+			} catch (err) {
+				setError("Failed to load user data");
+				console.error("Error fetching user data:", err);
+			} finally {
+				setIsLoading(false);
+			}
+		};
 
-    fetchUserData();
-  }, []);
+		fetchUserData();
+	}, []);
 
 	// const formatDate = (dateString: string) => {
 	//   const formatter = new Intl.DateTimeFormat('en', {
@@ -42,45 +48,36 @@ const UserProfilePage: React.FC = () => {
 	//   return formatter.format(new Date(dateString));
 	// };
 
-  if (isLoading) {
-    return <div className="loading-indicator">Loading...</div>;
-  }
+	if (isLoading) {
+		return <div className="loading-indicator">Loading...</div>;
+	}
 
-  if (error) {
-    return <div className="error-message">{error}</div>;
-  }
+	if (error) {
+		return <div className="error-message">{error}</div>;
+	}
 
-  if (!user) {
-    return <div className="no-data">No user data available</div>;
-  }
+	if (!user) {
+		return <div className="no-data">No user data available</div>;
+	}
 
-	return(
-		<div className="user-profile">
-		<h2 className="title-2 margin-element">My account</h2>
-		<form className="account-form">
-			<div className="input-element">
-				<span className="input-label input-title">Avatar</span>
-				<img src={user.avatar}></img>
+	return (
+		<div className="user-settings-page">
+			<div>
+				<h2 className="title-2">Settings</h2>
+				<span className="subtitle-gray">Manage your account settings and set e-mail preferences.</span>
 			</div>
-			<div className="input-element">
-				<span className="input-label input-title">Имя</span>
-				<Input defaultValue={user.name} />
+			<hr className="hr-settings" />
+			<div className="user-settings-page-container">
+				<div className="tabs-list">
+					<Tabs tabs={tabs} basePath="/profile" />
+				</div>
+
+				<div className="tab-content">
+					{/* <h2 className="title-2">My Account</h2> */}
+					<TabsRouter user={user} />
+				</div>
 			</div>
-			<div className="input-element">
-				<span className="input-label input-title">Email</span>
-				<span>{user.email}</span>
-			</div>
-			<div className="input-element">
-				<span className="input-label input-title">Date registr</span>
-				<span>{user.date_joined_readable}</span>
-			</div>
-			<div className="input-element">
-				<span className="input-label input-title">Удалить аккаунт</span>
-				<span>Все ваши данные, включая задачи, проекты, комментарии и не только будут сразу удалены без возможности восстановления. </span>
-				<Button text={"Удалить аккаунт"} variant="danger" />
-			</div>
-		</form>
-	</div>
+		</div>
 	);
 }
 

@@ -1,5 +1,5 @@
 // import React, { useEffect, useRef } from "react";
-import DropdownFormDeadline from "../DropdownFormDeadline";
+// import DropdownFormDeadline from "../DropdownFormDeadline";
 
 import './index.scss';
 // interface DropdownMenuProps {
@@ -22,7 +22,6 @@ const DropdownMenu = () => {
 
   return (
     <div>
-      <DropdownFormDeadline />
     </div>
   );
 }

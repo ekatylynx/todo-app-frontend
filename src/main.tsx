@@ -3,8 +3,6 @@ import * as ReactDOM from 'react-dom/client';
 import { BrowserRouter } from "react-router-dom"
 import { Provider } from "react-redux";
 import { store } from "@/app/store/store";
-// import { createStore } from 'redux'
-// import rootReducer from './reducers'
 
 import '@/app/index.css';
 import '@/app/app.scss';

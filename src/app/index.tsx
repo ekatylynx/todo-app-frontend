@@ -30,7 +30,7 @@ const App = () => {
             <Route path="/" element={<TasksPage />} />
             <Route path="/categories/:id" element={<FilterTasksPage />} />
             <Route path="/main" element={<HabitsPage />} />
-            <Route path="/profile" element={<UserProfilePage />} />
+            <Route path="/profile/*" element={<UserProfilePage />} />
           </Route>
         </Route>
       </Routes>

@@ -31,6 +31,7 @@ const Sidebar = () => {
               textWeight={'normal'} 
               classNameAdd={'btn-add-todo'}
               iconMedium
+              width={'full'}
             />
           </div>
           <FiltersDate />

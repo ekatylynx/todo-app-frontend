@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
-
-import { Todo } from "@/entities/todo/model";
+import { useDispatch, useSelector } from "react-redux";
 
 import './index.scss';
 import EditorTask from '@/app/components/EditorTask';
 import Button from '@/shared/ui/Button';
-import Input from '@/shared/ui/Input';
-import { Checkbox } from "@/shared/components/ui/checkbox"
 import IconAddElement from '@/shared/assets/icons/icon-add-el-black.svg';
+import { TaskCard } from "@/features/task/ui/TaskCard";
+import Loader from "@/shared/ui/Loader";
 
-import { allTodos, updateStatusTodo } from "@/entities/todo/api";
+import { RootState, AppDispatch } from "@/app/store/store";
+import { fetchTodos } from "@/entities/todo/redux/todoSlice";
 
 const TasksPage: React.FC = () => {
 	// TODO: 
@@ -18,115 +18,40 @@ const TasksPage: React.FC = () => {
 	// - [ ] Перенести и переписать все компоненты согласно FSD
 
 	const [open, setOpened] = useState<boolean>(false);
-	const [todos, setTodos] = useState<Todo[]>([]);
-	const [isLoading, setIsLoading] = useState(false);
-	const [error, setError] = useState<string | null>(null);
+	const dispatch = useDispatch<AppDispatch>();
+	const { todos, loading, error } = useSelector((state: RootState) => state.todos);
 
 	useEffect(() => {
-		allTodos().then((data) => {
-			if (data && Array.isArray(data)) {
-				setIsLoading(true);
-				// console.log("DATA COMPLETE")
-				setTodos(data);
-				console.log(data)
-				// setStatusTodo(data.status)
-			// } else {
-				// console.log("NO DATA")
-			}
-	 	})
-		.catch((err) => {
-			setError("Failed to load tasks");
-      console.error("Error fetching todos:", err);
-		})
-		.finally(() => {
-			setIsLoading(false);
-		})
-	}, []);
+    dispatch(fetchTodos());
+  }, [dispatch]);
 
-  const formatDate = (dateString: string) => {
-    const formatter = new Intl.DateTimeFormat('en', {
-      weekday: 'short',
-      year: 'numeric',
-      month: 'numeric',
-      day: 'numeric',
-      hour: 'numeric',
-      minute: 'numeric',
-      hour12: false,
-    });
-    return formatter.format(new Date(dateString));
-  };
-
-	// Обработка изменения статуса
-  const handleStatusChange = async (id: number, newStatus: boolean) => {
-    try {
-      // Оптимистичное обновление UI
-      setTodos((prevTodos) =>
-        prevTodos.map((todo) =>
-          todo.id === id ? { ...todo, status: newStatus } : todo
-        )
-      );
-
-      // Отправка на сервер
-      await updateStatusTodo(id, newStatus);
-      
-    } catch (err) {
-      // Откат изменений при ошибке
-      setTodos((prevTodos) =>
-        prevTodos.map((todo) =>
-          todo.id === id ? { ...todo, status: !newStatus } : todo
-        )
-      );
-      setError("Failed to update task status");
-      console.error("Error updating status:", err);
-    }
-  };
-
-  if (isLoading) return <div className="loading-indicator">Loading tasks...</div>;
+	if (loading === "pending") return <Loader />;
   if (error) return <div className="error-message">{error}</div>;
 
 	return (
 		<div className='tasks-page-container'>
 			<div className='tasks-page'>
 				<h2 className='title-2'>All tasks</h2>
-					<div>
-						<ul className="tasks-cards">
-						{todos.map(({ id, title, description, created_at_moscow, status }) => {
-							// const taskDate = new Date(created_at_moscow);
-							return (
-								<li key={id} className='tasks-card'>
-									<div>
-										<Checkbox
-										className="checkbox-meow"
-										checked={status}
-										onCheckedChange={(checked) => {
-											// Обработка всех возможных значений checked
-											if (checked === "indeterminate") {
-												console.warn("Indeterminate state is not handled.");
-												return;
-											}
-											const isChecked = checked === true;
-											handleStatusChange(id, isChecked);
-										}}/>
-									</div>
-									<div className="tasks-card-info">
-										<Input isChangeInput={true} className="tasks-card-title" defaultValue={title} onChange={(e) => e.target.value} />
-										<span className="tasks-card-descrip">{description}</span>
-										<span className="tasks-card-time">{formatDate(created_at_moscow)}</span>
-									</div>
-								</li>
-							);
-						})}
-						</ul>
-					</div>
-				
+				<ul className="tasks-cards">
+					{todos.map((todo) => (
+						<TaskCard
+							key={todo.id}
+							todo={todo}
+						/>
+					))}
+				</ul>
+
 				{!open ? (<Button
 					text={'Add task'}
+					width={'full'}
 					icon={IconAddElement}
 					textColor={'black'}
 					textWeight={'normal'}
 					classNameAdd={'btn-add-todo'}
 					iconMedium
-					style={{ backgroundColor: 'var(--glob-color-accent-gray)', border: '1px solid var(--glob-color-accent-gray)' }}
+					style={{ 
+						backgroundColor: 'var(--glob-color-accent-gray)', 
+						border: '1px solid var(--glob-color-accent-gray)' }}
 					onClick={(e) => {
 						e.preventDefault();
 						setOpened(true);
