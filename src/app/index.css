@@ -10,11 +10,11 @@
 /* ---break---
 */
 
-/* @custom-variant dark (&:is(.dark *)); */
+@custom-variant dark (&:is(.dark *));
 
-/* @tailwind base;
+@tailwind base;
 @tailwind components;
-@tailwind utilities; */
+@tailwind utilities;
 
 /* font settings */
 
@@ -246,14 +246,14 @@ button {
 		--chart-5: 340 75% 55%;
 	}
 }
-/* @layer base {
+@layer base {
   * {
     @apply border-border;
 	}
   body {
     @apply bg-background text-foreground;
 	}
-} */
+}
 
 /* global animation for ui components */
 .transition-colors {
@@ -298,7 +298,7 @@ button {
 }
 /* ---break---
 */
-/* @theme inline {
+@theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -334,14 +334,14 @@ button {
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
-} */
+}
 /* ---break---
 */
-/* @layer base {
+@layer base {
   * {
     @apply border-border outline-ring/50;
   }
   body {
     @apply bg-background text-foreground;
   }
-} */
+}
