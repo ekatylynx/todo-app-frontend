@@ -1,0 +1,12 @@
+.layout {
+  display: flex;
+  flex-direction: row;
+  min-height: 100svh;
+}
+
+.layout-main {
+  width: 100%;
+  flex: 1;
+  overflow-y: auto;
+  margin-left: 258px;
+}

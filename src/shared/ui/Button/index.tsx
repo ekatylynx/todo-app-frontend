@@ -11,7 +11,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   textWeight?: React.CSSProperties["fontWeight"];
   classNameAdd?: string;
   width?: "full";
-  variant?: 'primary' | 'danger' | 'outline';
+  variant?: 'primary' | 'danger' | 'outline' | 'gray';
 }
 
 const Button: React.FC<ButtonProps> = ({

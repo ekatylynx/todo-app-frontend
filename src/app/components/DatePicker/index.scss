@@ -1,5 +1,5 @@
 .rdp {
-  --rdp-cell-size: 33px;
+  --rdp-cell-size: 28px;
   margin: 0;
 }
 
@@ -8,7 +8,6 @@
   --rdp-day_button-height: 32px;
   --rdp-day-width: 32px;
   --rdp-day-height: 32px;
-  // --rdp-dropdown-gap: 8px;
 }
 
 // Цвет ячейки при hover эффекте
@@ -19,24 +18,8 @@
 .rdp-months {
   border: 1px solid var(--glob-main-border-color);
   border-radius: 6px;
-  padding: 1rem;
+  padding: 13px;
 }
-
-// .rdp-weekdays {
-//   display: flex;
-//   width: 100%;
-// }
-
-// .rdp-weekdays {
-//   display: flex;
-//   width: 100%;
-// }
-
-// .rdp-weekday {
-//   width: 32px;
-//   height: 32px;
-//   color: var(--glob-color-muted-gray);
-// }
 
 .rdp-week {
   display: flex;
@@ -87,8 +70,12 @@
   color: white;
 }
 
+.rdp-caption {
+  margin-bottom: 5px;
+}
+
 .rdp-caption_label {
-  left: 61px;
+  left: 55px;
   font-size: 14px;
   font-weight: 500;
 }
@@ -98,13 +85,11 @@
 }
 
 .rdp-nav_button_previous {
-  left: -165px;
-  // top: 12px;
+  left: -136px
 }
 
 .rdp-nav_button_next {
   right: 0;
-  // top: 12px;
 }
 
 .rdp-chevron {
@@ -113,7 +98,6 @@
 
 .rdp-nav_button_previous, .rdp-nav_button_next {
   border-radius: 6px;
-  // border: 1px solid #f1f1f3;
   border: 1px solid var(--glob-main-border-color);
   opacity: .5;
   transition-property: opacity, fill;
@@ -124,12 +108,5 @@
 .rdp-nav_button_previous:hover, .rdp-nav_button_next:hover {
   opacity: 1;
 }
-
-// text-shadow
-// 0 0 5px #bb70bb, 0 0 10px #9d219d, 0 0 20px #8f208f, 0 0 40px #7c277c
-
-// text-shadow
-// 0 0 10px #bb70bb, 0 0 20px #601e60, 0 0 30px #5e1d5e, 0 0 50px #7b237b
-
 
 

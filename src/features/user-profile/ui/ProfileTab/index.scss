@@ -1,6 +1,18 @@
+.user-avatar-container {
+  display: flex;
+  align-items: center;
+}
+
 .user-avatar {
-  width: 64px;
-  height: 64px;
+  width: 80px;
+  height: 80px;
   background-color: red;
   border-radius: 50%;
+  margin-right: 20px;
+}
+
+.user-btns {
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
 }

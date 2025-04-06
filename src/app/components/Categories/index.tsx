@@ -29,7 +29,7 @@ useEffect(() => {
   return (
     <div className='categories'>
       <div className="categories-container">
-        <h2 className='categories-title'>Категории</h2>
+        {/* <h2 className='categories-title'>Категории</h2> */}
         <div className='container-padding'>
           <Button
             text={'Add category'}
@@ -42,10 +42,10 @@ useEffect(() => {
           />
         </div>
 
-        <ul>
+        <ul className='categories-list'>
         {category.map(({id, title}) => {
           return (
-            <li key={id}>
+            <li className='categories-item-container' key={id}>
               <Link to={`/categories/${id}`} className='categories-item'>{`# ${title}`}</Link>
             </li>
           )

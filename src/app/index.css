@@ -103,15 +103,17 @@ html, body, #root {
 
 :root {
   --glob-main-background: #ccc;
+  --glob-color-border: #e4e4e7;
 	--glob-main-border-color: #e5e7eb;
 	--glob-padding-horiz: 20px;
 	--glob-color-black: #09090b;
 	--glob-color-muted-gray: #71717a;
 	--glob-color-black-hover: rgba(24, 24, 27, 0.9);
 	--glob-color-accent-gray: #f3f3f5;
-  --glob-color-accent: #f4f4f5;
+  --glob-color-accent: #f0f0f0;
 	--glob-color-accent-darkgray: #e5e5e5;
 	--glob-color-darkgray: #3a3a3a;
+  --glob-color-title-3:#3f3f46;
 	--radius: 0.625rem;
 	--background: oklch(1 0 0);
 	--foreground: oklch(0.145 0 0);

@@ -1,0 +1,61 @@
+// src/app/ui/Sidebar/Sidebar.scss
+.sidebar {
+  height: 100svh;
+  width: 258px;
+  background-color: #f4f4f4;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* Предовтращение скролла всего сайдбара */
+  position: fixed;
+  border-right: 1px solid var(--glob-color-border);
+  background-color: #FAFAFA;
+}
+
+.sidebar-header {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.sidebar-nav {
+  flex: 1; /* Для занятия всего доступного пространства */
+  overflow-y: auto; /* Скролл только для nav */
+  // padding: 1rem;
+}
+
+.sidebar-nav li {
+  margin-bottom: 0.5rem;
+}
+
+.sidebar-nav a {
+  text-decoration: none;
+  color: #333;
+  display: block;
+  padding: 0.5rem;
+  border-radius: 4px;
+}
+
+.sidebar-footer {
+  position: sticky;
+  bottom: 0;
+  z-index: 1;
+}
+
+.sidebar-padding {
+  padding: 0 16px;
+}
+
+.sidebar-margin-bot {
+  padding: 10px 0;
+}
+
+.sidebar-title {
+  display: flex;
+  align-items: center;
+  // height: 32px;
+  height: 24px;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 500;
+  color: rgba(63, 63, 70, 0.7);
+}

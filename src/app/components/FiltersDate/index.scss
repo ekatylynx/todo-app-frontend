@@ -1,11 +1,7 @@
-.filters {
-  padding: 0 18px;
-}
-
 .filters-btn {
   border: none;
   background-color: transparent;
-  height: 36px;
+  height: 32px;
   width: 100%;
   display: flex;
   align-items: center;
@@ -13,30 +9,19 @@
   transition: background-color .3s;
   position: relative;
   padding: 5px;
+  margin-bottom: 4px;
 }
 
 .filters-btn:hover {
-  // background-color: #ffefe5;
-  background-color: var(--glob-color-accent-gray);
-
-  // .filters-icon {
-  //   // stroke: red; 
-  //   fill: red;
-  // }
-
-  // .current-day {
-  //   color: red;
-  // }
+  background-color: var(--glob-color-accent);
 }
 
 .filters-icon {
   width: 20px;
   height: 20px;
   margin-right: 8px;
-  // stroke: black;
   fill: black;
   transition: fill .5s;
-  // transition: fill .5s;
 }
 
 .current-day {

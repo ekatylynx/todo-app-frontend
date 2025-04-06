@@ -17,21 +17,31 @@
   margin-left: 18px;
 }
 
+.categories-list {
+  padding: 8px 0;
+}
+
+.categories-item-container {
+  height: 32px;
+  display: flex;
+  align-items: center;
+
+}
+
 .categories-item {
+  line-height: 1.25rem;
   box-sizing: border-box;
   display: block;
   width: 100%;
   height: 100%;
-  // margin: 0 18px;
   border-radius: 4px;
   background-color: transparent;
-  padding: 10px 18px 10px 24px;
   color: black;
   margin-bottom: 4px;
   transition: background-color 0.3s;
 }
 
 .categories-item:hover {
-  background-color: var(--glob-color-accent-gray);
+  background-color: var(--glob-color-accent);
   cursor: pointer;
 }

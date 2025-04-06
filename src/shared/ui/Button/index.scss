@@ -21,7 +21,7 @@
 .btn-medium {
   display: flex;
   font-weight: 500;
-  min-height: 36px;
+  min-height: 32px;
   justify-content: center;
   border: none;
   border: 1px solid transparent;
@@ -81,8 +81,20 @@
 
 .outline {
   background-color: transparent;
-  color: white;
+  color: black;
   border: 1px solid white;
+}
+
+.gray {
+  background-color: var(--glob-color-accent);
+  color: black;
+  border: none;
+  transition: background-color 0.2s linear;
+}
+
+.gray:hover {
+  background-color: var(--glob-color-accent-darkgray);
+  border: none;
 }
 
 .btn-full-width {

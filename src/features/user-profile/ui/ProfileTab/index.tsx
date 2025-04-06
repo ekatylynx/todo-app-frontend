@@ -19,8 +19,15 @@ export const ProfileTab: React.FC<ProfileTabProps> = ({ user }) => {
 			<div className="input-element">
 				<span className="input-label input-title">Avatar</span>
 				<img src={user.avatar}></img>
-        <div className="user-avatar">
-          <img src={iconUser}></img>
+        <div className="user-avatar-container">
+					<div className="user-avatar"><img src={iconUser}></img></div>
+					<div>
+						<div className="user-btns">
+							<Button variant="gray" text={"Change photo"} />
+							<Button variant="danger" text={"Delete photo"} />
+						</div>
+							<span className="subtitle-gray">Select a photo up to 4MB in size.</span>
+					</div>
         </div>
 			</div>
 			<div className="input-element">

@@ -50,7 +50,7 @@ const FilterTasksPage: React.FC = () => {
 		<div className='tasks-page-container'>
 			{/* <div className='tasks-page'>Category ID: {id} ОТЛАДОЧНЫЙ КОД */}
 			<div className='tasks-page'>
-			<h2 className="title-2xl">{categoryName}</h2>
+			<h2 className="title-2xl">{'# ' + categoryName}</h2>
 			<ul className="tasks-cards">
 				{todos.map((task) => (
             <TaskCard key={task.id} todo={task} />
