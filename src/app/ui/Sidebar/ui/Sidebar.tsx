@@ -50,7 +50,7 @@ const Sidebar1: React.FC = () => {
             text={'Add task'}
             icon={iconAddElement}
             textColor={'white'}
-            textWeight={'normal'} 
+            textWeight={'normal'}
             classNameAdd={'btn-add-todo'}
             iconMedium
             width={'full'}
