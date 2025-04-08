@@ -6,6 +6,9 @@ import Button from '@/shared/ui/Button';
 import FiltersDate from '@/app/components/FiltersDate';
 import Categories from '@/app/components/Categories';
 
+import DropdownMenu from '@/shared/ui/DropdownMenu';
+import { NavLink } from 'react-router-dom'; // Для навигации
+
 import iconAddElement from '@/shared/assets/icons/icon-add-el.svg';
 import userIcon from '@/shared/assets/icons/user2.png';
 
@@ -72,14 +75,38 @@ const Sidebar1: React.FC = () => {
       </nav>
       <div className="sidebar-footer">
         {/* <p>© 2025 Your App</p> */}
-        <SidebarStickyElement
-          name={'name'}
-          subtitle={'emailmy@gmail.com'}
-          roundImage
-          leftImage={
-            <img src={userIcon}></img>
+        
+        <DropdownMenu
+          trigger={
+            <SidebarStickyElement
+              name={'name'}
+              subtitle={'emailmy@gmail.com'}
+              roundImage
+              leftImage={
+                <img src={userIcon}></img>
+              }
+            />
           }
-        />
+         >
+          <ul className="dropdown-menu-list">
+          <SidebarStickyElement
+              name={'name'}
+              subtitle={'emailmy@gmail.com'}
+              roundImage
+              leftImage={
+                <img src={userIcon}></img>
+              }
+              sidebarStickContainerPadding="0px"
+              sidebarStickPadding="4px"
+            />
+            <div className='line-classic'></div>
+            <li className='dropdown-menu-element'><NavLink to="/profile/my">Profile</NavLink></li>
+            <li className='dropdown-menu-element'><NavLink to="/profile/account">Account</NavLink></li>
+            <li className='dropdown-menu-element'><NavLink to="/profile/notifications">Notifications</NavLink></li>
+            <div className='line-classic'></div>
+            <li className='dropdown-menu-element'><NavLink to="/logout">Log out</NavLink></li>
+          </ul>
+        </DropdownMenu>   
       </div>
     </aside>
   );

@@ -8,22 +8,37 @@ interface Props {
   name?: string;
   subtitle?: string;
   roundImage?: boolean;
+  sidebarStickContainerPadding?: string; // Кастомный padding
+  sidebarStickPadding?: string; // Кастомный padding (например, "20px" или "1rem 2rem")
 }
 
-const SidebarStickyElement: React.FC<Props> = ({ leftImage, name, subtitle, roundImage }) => {
+const SidebarStickyElement: React.FC<Props> = ({ 
+  leftImage,
+  name,
+  subtitle,
+  roundImage,
+  sidebarStickContainerPadding,
+  sidebarStickPadding
+}) => {
   return (
-    <div className="team-container">
-      <div className='team'>
-        <div className='team-icons'>
+    <div 
+      className="sidebar-sticky-container"
+      style={sidebarStickContainerPadding ? { padding: sidebarStickContainerPadding } : undefined}
+    >
+      <div
+        className='sidebar-stick'
+        style={sidebarStickPadding ? { padding: sidebarStickPadding } : undefined}
+      >
+        <div className='sidebar-stick-icons'>
           <div className={roundImage ? 'icon-container-2-nopadding' : 'icon-container-2'}>
             <div className={roundImage ? 'icon-container-nopadding' : 'icon-container-svg'}>
               {leftImage ? leftImage : null}
             </div>
           </div>
           
-          <div className='team-text-container'>
-            <span className='team-title'>{name}</span>
-            <span className='team-subtitle'>{subtitle}</span>
+          <div className='sidebar-stick-text-container'>
+            <span className='sidebar-stick-title'>{name}</span>
+            <span className='sidebar-stick-subtitle'>{subtitle}</span>
           </div>
         </div>
         <div>{'< >'}</div>

@@ -1,9 +1,9 @@
-.team-container {
+.sidebar-sticky-container {
   padding: 8px;
   width: 100%;
 }
 
-.team {
+.sidebar-stick {
   width: 100%;
   padding: 8px;
   display: flex;
@@ -14,12 +14,12 @@
   border-radius: 8px;
 }
 
-.team-icons {
+.sidebar-stick-icons {
   display: flex;
   align-items: center;
 }
 
-.team:hover {
+.sidebar-stick:hover {
   background-color: var(--glob-color-accent);
 }
 
@@ -51,25 +51,25 @@
   overflow: hidden;
 }
 
-.team-icon {
+.sidebar-stick-icon {
   display: flex;
   color: white;
   width: 16px;
   height: 16px;
 }
 
-.team-text-container {
+.sidebar-stick-text-container {
   margin-left: 8px;
   display: flex;
   flex-direction: column;
 }
 
-.team-title {
+.sidebar-stick-title {
   font-weight: 600;
   line-height: 17.5px;
 }
 
-.team-subtitle {
+.sidebar-stick-subtitle {
   font-weight: 400;
   line-height: 16px;
 }
