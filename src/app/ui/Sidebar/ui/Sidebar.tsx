@@ -7,22 +7,26 @@ import FiltersDate from '@/app/components/FiltersDate';
 import Categories from '@/app/components/Categories';
 
 import DropdownMenu from '@/shared/ui/DropdownMenu';
-import { NavLink } from 'react-router-dom'; // Для навигации
+import { NavLink } from 'react-router-dom';
 
 import iconAddElement from '@/shared/assets/icons/icon-add-el.svg';
 import userIcon from '@/shared/assets/icons/user2.png';
 
+
 import './index.scss';
+
+interface SidebarProps {
+  isOpen: boolean;
+}
 
 /*
 TODO:
 1. Сделать кастомный тонкий скролл для всех браузеров
-
 */
 
-const Sidebar1: React.FC = () => {
+const Sidebar: React.FC<SidebarProps> = ({ isOpen  }) => {
   return (
-    <aside className="sidebar">
+    <aside className={`sidebar ${isOpen ? 'open' : 'close'}`}>
       <div className="sidebar-header">
         <SidebarStickyElement
          roundImage={false}
@@ -38,7 +42,7 @@ const Sidebar1: React.FC = () => {
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
-          className="team-icon lucide lucide-gallery-vertical-end size-4">
+          className="sidebar-stick-icon lucide lucide-gallery-vertical-end size-4">
           <path d="M7 2h10"></path><path d="M5 6h14"></path>
           <rect width="18" height="12" x="3" y="10" rx="2"></rect>
         </svg>
@@ -89,7 +93,8 @@ const Sidebar1: React.FC = () => {
           }
          >
           <ul className="dropdown-menu-list">
-          <SidebarStickyElement
+            <li>
+            <SidebarStickyElement
               name={'name'}
               subtitle={'emailmy@gmail.com'}
               roundImage
@@ -99,11 +104,12 @@ const Sidebar1: React.FC = () => {
               sidebarStickContainerPadding="0px"
               sidebarStickPadding="4px"
             />
-            <div className='line-classic'></div>
+            </li>
+            <li><div className='line-classic'></div></li>
             <li className='dropdown-menu-element'><NavLink to="/profile/my">Profile</NavLink></li>
             <li className='dropdown-menu-element'><NavLink to="/profile/account">Account</NavLink></li>
             <li className='dropdown-menu-element'><NavLink to="/profile/notifications">Notifications</NavLink></li>
-            <div className='line-classic'></div>
+            <li><div className='line-classic'></div></li>
             <li className='dropdown-menu-element'><NavLink to="/logout">Log out</NavLink></li>
           </ul>
         </DropdownMenu>   
@@ -112,6 +118,4 @@ const Sidebar1: React.FC = () => {
   );
 };
 
-export default Sidebar1;
-
-// Макет Layout для страниц, которые должны содержать Header и Sidebar
+export default Sidebar;

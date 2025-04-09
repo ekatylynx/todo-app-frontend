@@ -9,4 +9,9 @@
   flex: 1;
   overflow-y: auto;
   margin-left: 258px;
+  transition: margin-left 300ms ease-in-out;
+}
+
+.with-sidebar {
+  margin-left: 0;
 }

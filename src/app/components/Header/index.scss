@@ -12,12 +12,17 @@
   display: flex;
   width: 100%;
   justify-content: space-between;
-  padding: 13px 24px;
+  padding: 10px 16px;
   align-items: center;
+}
+
+.header-nav-2 {
+  display: flex;
 }
 
 .header-nav-links {
   display: flex;
+  align-items: center;
 }
 
 .header-link-item {
@@ -100,4 +105,27 @@
 
 .header-name-date {
   color: rgb(63, 176, 241);
+}
+
+.header-icon-container {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  transition: background-color 0.3s;
+}
+
+.header-icon-container:hover {
+  background-color: var(--glob-color-accent);
+}
+
+
+.header-icon-container .sidebar-stick-icon {
+  color: black;
+}
+
+.header-link-item:first-child {
+  margin-left: 16px;
 }

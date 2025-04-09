@@ -2,10 +2,13 @@ import { configureStore } from "@reduxjs/toolkit";
 import todosReducer from "@/entities/todo/redux/todoSlice";
 import categoriesReducer from "@/entities/category/redux/categoriesSlice";
 
+import sidebarReducer from '@/app/model/sidebarSlice';
+
 export const store = configureStore({
   reducer: {
     todos: todosReducer,
     categories: categoriesReducer,
+    sidebar: sidebarReducer,
   },
 });
 

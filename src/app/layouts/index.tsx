@@ -1,16 +1,22 @@
 import React from 'react';
+
+import { useSelector } from 'react-redux';
+import { RootState } from '@/app/store/store';
+
 import { Outlet } from 'react-router-dom';
 import Header from '../components/Header';
-import { Sidebar1 } from '@/app/ui/Sidebar/index';
+import { Sidebar } from '@/app/ui/Sidebar/index';
 
 import '@/app/ui/Sidebar/ui/index.scss';
 import './index.scss';
 
 const Layout: React.FC = () => {
+  const isSidebarOpen = useSelector((state: RootState) => state.sidebar.isSidebarOpen);
+
   return (
     <div className='layout'>
-      <Sidebar1 />
-      <div className='layout-main'>
+      <Sidebar isOpen={isSidebarOpen} />
+      <div className={`layout-main ${isSidebarOpen ? '' : 'with-sidebar'}`}>
         <Header />
         <Outlet />
       </div>
@@ -19,5 +25,3 @@ const Layout: React.FC = () => {
 };
 
 export default Layout;
-
-// Макет Layout для страниц, которые должны содержать Header и Sidebar.
