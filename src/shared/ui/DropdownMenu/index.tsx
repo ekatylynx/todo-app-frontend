@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
 
 import './index.scss';
+import { Transition } from 'react-transition-group';
 
 interface DropdownMenuProps {
   trigger: React.ReactNode; // Элемент, при клике на который открывается меню
@@ -40,15 +41,23 @@ export const DropdownMenu: React.FC<DropdownMenuProps> = ({ trigger, children })
 
   return (
     <div className="dropdown-menu">
-      <div ref={triggerRef} className="dropdown-menu-trigger" onClick={handleTriggerClick}>
+      <div 
+        ref={triggerRef} 
+        className="dropdown-menu-trigger" 
+        onClick={() => {
+        handleTriggerClick();
+        }}>
         {trigger}
       </div>
-      {isOpen &&
-        ReactDOM.createPortal(
-          <div ref={menuRef} className="dropdown-menu-content">
-            {children}
-          </div>,
-          document.body // Рендерим в корень DOM для поверхностного отображения
+      {ReactDOM.createPortal(
+          <Transition in={isOpen} timeout={300} >
+            {(state) => (
+              <div ref={menuRef} className={`dropdown-menu-content ${state}`}>
+                {children}
+              </div>
+              )}
+          </Transition>,
+          document.body
         )}
     </div>
   );

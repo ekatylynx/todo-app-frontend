@@ -17,8 +17,32 @@
   border-radius: 8px;
   box-shadow: 0 2px 8px var(--glob-main-border-color);
   padding: 4px;
-  z-index: 1000; /* Поверх всех окон */
+  z-index: 1000;
   min-width: 239px;
+  opacity: 0;
+  transform: translateY(10px); // Начальное смещение вниз
+  transition: opacity 0.3s ease, transform 0.3s ease; // Плавные переходы
+}
+
+// Состояния анимации
+.dropdown-menu-content.entering {
+  opacity: 0;
+  transform: translateY(10px); // Начало входа
+}
+
+.dropdown-menu-content.entered {
+  opacity: 1;
+  transform: translateY(0); // Полностью открыто
+}
+
+.dropdown-menu-content.exiting {
+  opacity: 1;
+  transform: translateY(0); // Начало выхода
+}
+
+.dropdown-menu-content.exited {
+  opacity: 0;
+  transform: translateY(10px); // Полностью скрыто
 }
 
 .dropdown-menu-element {
